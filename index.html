@@ -150,7 +150,7 @@
       </div>
       <div class="md:w-5/12 mt-12 md:mt-0">
         <div class="relative bg-sand-100/10 backdrop-blur-md p-4 rounded-2xl border border-sand-100/20 shadow-2xl">
-          <img src="wayfarer-ziplock.png" alt="Wayfarer Sabonete Corporal em Pó" class="rounded-xl object-cover h-80 w-full">
+          <img src="wayfarer-simulation.png" alt="Wayfarer Sabonete Corporal em Pó" class="rounded-xl object-cover h-80 w-full">
           <div class="absolute -bottom-4 -left-4 bg-sand-50 text-botanic-900 p-4 rounded-xl shadow-lg border border-sand-200 text-xs max-w-xs">
             <p class="font-bold text-sm">Wayfarer - Sabonete Corporal em Pó</p>
             <p class="text-gray-500 mt-0.5">Chá Verde • 5 sachês de 10g (50g no total) • Ideal para viagens</p>
@@ -215,4 +215,237 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
-                <i class
+                <i class="fa-solid fa-star"></i>
+                <span class="text-gray-400 font-normal ml-1">(5.0)</span>
+              </div>
+              <h3 class="font-bold text-base text-botanic-900 group-hover:text-botanic-500 transition leading-snug" x-text="product.title"></h3>
+              <p class="text-xs text-gray-500 mt-1 font-light leading-relaxed" x-text="product.sub"></p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-sand-100">
+              <div class="flex items-baseline space-x-2">
+                <span class="text-xl font-extrabold text-botanic-900" x-text="formatMoney(product.price)"></span>
+              </div>
+              <p class="text-[11px] text-emerald-700 font-medium">
+                <span x-text="formatMoney(product.price * 0.97)"></span> no PIX (3% OFF)
+              </p>
+
+              <button @click="addToCart(product)" 
+                      class="mt-4 w-full bg-botanic-700 hover:bg-botanic-800 text-sand-50 font-semibold text-xs py-3 rounded-xl transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Adicionar ao Carrinho</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <section id="manifesto" class="bg-sand-100 py-20 border-t border-b border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Conexão com a Natureza</span>
+        <h2 class="font-serif text-3xl md:text-5xl text-botanic-900 mt-2 mb-6 leading-tight">Beleza limpa, consciente e com propósito.</h2>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          A Farmaura nasceu do desejo de reconectar a rotina diária de cuidados com os ritmos da natureza. Acreditamos que você não precisa comprometer sua health ou o meio ambiente para ter resultados incríveis.
+        </p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Nossas fórmulas são artesanais e ecológicas, ricas em extratos botânicos e pensadas para proporcionar a máxima eficiência com o menor impacto ambiental.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="border-l-2 border-terracotta-500 pl-4">
+            <span class="font-serif text-2xl font-bold text-botanic-800">100%</span>
+            <p class="text-xs text-gray-500">Biodegradável e sustentável</p>
+          </div>
+          <div class="border-l-2 border-botanic-500 pl-4">
+            <span class="font-serif text-2xl font-bold text-botanic-800">Cruelty-Free</span>
+            <p class="text-xs text-gray-500">Nunca testado em animais</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
+        <img src="wayfarer-simulation.png" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sabonete Natural">
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="py-16 bg-sand-50 border-b border-sand-200">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Atendimento</span>
+      <h2 class="font-serif text-3xl font-semibold text-botanic-900 mt-1 mb-2">Fale Conosco</h2>
+      <p class="text-xs md:text-sm text-gray-600 mb-8">Envie suas dúvidas, sugestões ou entre em contato direto com a nossa equipe.</p>
+
+      <form action="https://formspree.io/f/xaeqegev" method="POST" class="bg-white p-6 sm:p-8 rounded-2xl border border-sand-200 shadow-sm text-left space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu Nome *</label>
+          <input type="text" name="nome" required placeholder="Digite seu nome completo" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu E-mail *</label>
+          <input type="email" name="email" required placeholder="seuemail@empresa.com" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Mensagem *</label>
+          <textarea name="mensagem" rows="4" required placeholder="Escreva sua mensagem aqui..." class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-botanic-700 hover:bg-botanic-800 text-white font-bold py-3 rounded-xl text-xs transition shadow-md">
+          Enviar Mensagem
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section class="bg-botanic-900 text-sand-50 py-16">
+    <div class="max-w-3xl mx-auto text-center px-4">
+      <i class="fa-regular fa-paper-plane text-terracotta-500 text-3xl mb-4"></i>
+      <h2 class="font-serif text-3xl font-semibold">Ganhe 10% OFF na sua 1ª compra</h2>
+      <p class="text-sand-300 text-xs md:text-sm mt-2 mb-8 font-light">
+        Inscreva-se para receber novidades, dicas exclusivas de autocuidado e cupons especiais da Farmaura.
+      </p>
+      <form @submit.prevent="showToast('Obrigado! Seu cupom FARMAURA10 já está ativo.')" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="Digite seu melhor e-mail" required 
+               class="flex-1 bg-botanic-800 text-white placeholder-gray-400 text-sm px-5 py-3 rounded-full border border-botanic-700 focus:outline-none focus:border-terracotta-500">
+        <button type="submit" class="bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-xs px-8 py-3 rounded-full transition">
+          Quero Desconto
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <div x-show="cartOpen" class="relative z-50">
+    <div x-show="cartOpen" x-transition.opacity @click="cartOpen = false" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
+
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div x-show="cartOpen" x-transition:enter="transform transition ease-in-out duration-300"
+           x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+           x-transition:leave="transform transition ease-in-out duration-300"
+           x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+           class="w-screen max-w-md bg-sand-50 shadow-2xl flex flex-col justify-between">
+        
+        <div class="p-6 border-b border-sand-200 flex justify-between items-center bg-sand-100">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-bag-shopping text-botanic-700"></i>
+            <h3 class="font-serif text-lg font-bold text-botanic-900">Seu Carrinho</h3>
+            <span class="text-xs text-gray-500 font-normal" x-text="`(${cartTotalCount()} itens)`"></span>
+          </div>
+          <button @click="cartOpen = false" class="text-gray-500 hover:text-black text-lg p-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="bg-botanic-100 p-3 px-6 border-b border-sand-200">
+          <div class="flex justify-between text-xs font-semibold mb-1 text-botanic-800">
+            <span x-text="freeShippingRemaining() > 0 ? `Faltam ${formatMoney(freeShippingRemaining())} para Frete Grátis!` : '🎉 Você ganhou Frete Grátis!'"></span>
+          </div>
+          <div class="w-full bg-sand-200 rounded-full h-2">
+            <div class="bg-botanic-700 h-2 rounded-full transition-all duration-500" 
+                 :style="`width: ${Math.min(100, (cartSubtotal() / 199) * 100)}%`"></div>
+          </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-4">
+          <template x-if="cart.length === 0">
+            <div class="text-center py-16 text-gray-400">
+              <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-sand-300"></i>
+              <p class="text-sm">Seu carrinho está vazio.</p>
+              <button @click="cartOpen = false" class="mt-4 text-xs font-bold text-terracotta-500 underline">Começar a comprar</button>
+            </div>
+          </template>
+
+          <template x-for="(item, index) in cart" :key="item.id">
+            <div class="flex items-center space-x-4 border-b border-sand-200 pb-4">
+              <img :src="item.image" :alt="item.title" class="w-16 h-16 object-cover rounded-xl border border-sand-300">
+              <div class="flex-1">
+                <h4 class="font-bold text-xs text-botanic-900" x-text="item.title"></h4>
+                <p class="text-xs text-gray-500" x-text="formatMoney(item.price)"></p>
+                
+                <div class="flex items-center space-x-3 mt-2">
+                  <div class="flex items-center border border-sand-300 rounded-lg bg-white">
+                    <button @click="updateQty(index, -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">-</button>
+                    <span class="px-2 text-xs font-bold" x-text="item.qty"></span>
+                    <button @click="updateQty(index, 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">+</button>
+                  </div>
+                  <button @click="removeFromCart(index)" class="text-xs text-red-500 hover:underline">Remover</button>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-bold text-xs text-botanic-900" x-text="formatMoney(item.price * item.qty)"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div x-show="cart.length > 0" class="p-6 border-t border-sand-200 bg-sand-100 space-y-3">
+          <div class="flex space-x-2">
+            <input type="text" x-model="couponCode" placeholder="Cupom de Desconto" 
+                   class="flex-1 bg-white border border-sand-300 rounded-lg text-xs px-3 py-2 uppercase">
+            <button @click="applyCoupon()" class="bg-botanic-800 text-white px-4 py-2 rounded-lg text-xs font-bold">Aplicar</button>
+          </div>
+
+          <div class="space-y-1 text-xs pt-2">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal:</span>
+              <span x-text="formatMoney(cartSubtotal())"></span>
+            </div>
+            <template x-if="discountApplied">
+              <div class="flex justify-between text-emerald-700 font-semibold">
+                <span>Cupom FARMAURA10 (10%):</span>
+                <span x-text="`- ${formatMoney(cartSubtotal() * 0.1)}`"></span>
+              </div>
+            </template>
+            <div class="flex justify-between text-gray-600">
+              <span>Desconto PIX (3% extra):</span>
+              <span class="text-emerald-700" x-text="`- ${formatMoney(cartTotalWithDiscounts() * 0.03)}`"></span>
+            </div>
+            <div class="flex justify-between text-sm font-bold text-botanic-900 pt-2 border-t border-sand-200">
+              <span>Total no PIX:</span>
+              <span class="text-base text-botanic-800" x-text="formatMoney(cartTotalWithDiscounts() * 0.97)"></span>
+            </div>
+          </div>
+
+          <button @click="openCheckoutModal()" class="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>Ir para o Pagamento</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div x-show="checkoutModalOpen" class="relative z-50">
+    <div x-show="checkoutModalOpen" x-transition.opacity @click="checkoutModalOpen = false" class="fixed inset-0 bg-black/60 backdrop-blur-xs"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+      <div x-show="checkoutModalOpen" x-transition
+           class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden border border-sand-300 flex flex-col max-h-[90vh]">
+        
+        <div class="bg-botanic-800 text-sand-50 p-5 px-6 flex justify-between items-center">
+          <div>
+            <h3 class="font-serif text-xl font-bold">Finalizar Pedido - Farmaura</h3>
+            <p class="text-xs text-sand-200">Preencha seus dados para receber o comprovante e os dados de entrega.</p>
+          </div>
+          <button @click="checkoutModalOpen = false" class="text-sand-300 hover:text-white text-xl">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto space-y-6">
+          <form id="checkoutForm" @submit.prevent="submitOrder()" class="space-y-6">
+            
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-botanic-800 border-b border-sand-200 pb-2 mb-3 flex items-center">
+                <i class="fa-regular fa-id-card mr-2 text-terracotta-500"></i> Dados Pessoais
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Nome Completo *</label>
+                  <input type="text" x-model="customer.name" required placeholder="Ex: Maria Silva"
+                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">E-mail *</label>
+                  <input type="email" x-model
