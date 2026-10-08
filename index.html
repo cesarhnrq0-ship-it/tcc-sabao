@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biotiê Natural | Cosméticos Naturais, Veganos e Artesanais</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            botanic: {
+              50: '#F4F7F4',
+              100: '#E5EBE5',
+              500: '#6B8E7B',
+              700: '#4A5D4E',
+              800: '#38483B',
+              900: '#2C332B',
+            },
+            sand: {
+              50: '#FCFBF9',
+              100: '#F9F6F0',
+              200: '#EFECE6',
+              300: '#E2DDD3',
+            },
+            terracotta: {
+              500: '#C87D53',
+              600: '#B0663E',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js (para interatividade reativa sem build step) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body class="bg-sand-50 text-botanic-900 font-sans antialiased selection:bg-botanic-500 selection:text-white"
+      x-data="shopApp()" x-cloak>
+
+  <!-- 🟢 TOAST NOTIFICATION -->
+  <div x-show="toast.show" x-transition 
+       class="fixed bottom-5 right-5 z-50 bg-botanic-900 text-sand-50 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-botanic-700">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+    <span x-text="toast.message" class="text-sm font-medium"></span>
+  </div>
+
+  <!-- 📢 TOP ANNOUNCEMENT BAR -->
+  <div class="bg-botanic-800 text-sand-100 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0">
+      <div class="flex items-center space-x-4">
+        <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> (16) 99111-0781</span>
+        <span class="hidden md:inline">•</span>
+        <span class="hidden md:inline"><i class="fa-regular fa-envelope mr-1"></i> contato@biotie.com.br</span>
+      </div>
+      <div class="font-medium tracking-wide">
+        ✨ Cupom 1ª Compra: <span class="bg-terracotta-500 text-white px-2 py-0.5 rounded font-bold">BIOTIE10</span> (10% OFF)
+      </div>
+      <div class="hidden lg:flex items-center space-x-3">
+        <span>3% OFF no PIX</span>
+        <span>•</span>
+        <span>Até 3x sem juros</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛍️ HEADER PRINCIPAL -->
+  <header class="sticky top-0 z-30 bg-sand-50/90 backdrop-blur-md border-b border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Mobile Menu Toggle -->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-botanic-900 text-xl p-2">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- LOGO -->
+        <a href="#" class="flex items-center space-x-2">
+          <span class="font-serif text-2xl md:text-3xl font-semibold tracking-wide text-botanic-800">Biotiê</span>
+          <span class="text-xs uppercase tracking-widest text-terracotta-500 font-sans border-l border-sand-300 pl-2 hidden sm:inline">Natural</span>
+        </a>
+
+        <!-- BARRA DE BUSCA -->
+        <div class="hidden md:flex flex-1 max-w-md mx-8">
+          <div class="relative w-full">
+            <input type="text" placeholder="Buscar desodorante, hidratante, óleos..." 
+                   class="w-full bg-sand-100 border border-sand-300 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-botanic-500 transition" />
+            <button class="absolute right-3 top-2.5 text-botanic-500">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- AÇÕES DO USUÁRIO -->
+        <div class="flex items-center space-x-5">
+          <a href="#" class="hidden sm:flex items-center text-sm font-medium hover:text-botanic-500 transition">
+            <i class="fa-regular fa-user text-lg mr-1.5"></i> Minha Conta
+          </a>
+          
+          <button class="relative text-botanic-900 hover:text-botanic-500 transition">
+            <i class="fa-regular fa-heart text-xl"></i>
+            <span class="absolute -top-1.5 -right-2 bg-terracotta-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          </button>
+
+          <!-- Botão Carrinho -->
+          <button @click="cartOpen = true" class="relative bg-botanic-700 text-sand-50 hover:bg-botanic-800 px-4 py-2 rounded-full transition flex items-center space-x-2">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="text-xs font-semibold hidden sm:inline">Carrinho</span>
+            <span x-text="cartTotalCount()" class="bg-sand-50 text-botanic-900 font-bold text-xs rounded-full px-1.5 py-0.2"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MENU NAVEGAÇÃO DESKTOP -->
+      <nav class="hidden md:flex justify-center space-x-8 py-3 border-t border-sand-200/60 text-xs font-semibold uppercase tracking-wider">
+        <a href="#produtos" @click="activeCategory = 'todos'" class="hover:text-terracotta-500 transition">Todos os Produtos</a>
+        <a href="#produtos" @click="activeCategory = 'corpo'" class="hover:text-terracotta-500 transition">Corpo & Banho</a>
+        <a href="#produtos" @click="activeCategory = 'skincare'" class="hover:text-terracotta-500 transition">Skincare Faciais</a>
+        <a href="#produtos" @click="activeCategory = 'aromaterapia'" class="hover:text-terracotta-500 transition">Aromaterapia</a>
+        <a href="#produtos" @click="activeCategory = 'intimo'" class="hover:text-terracotta-500 transition">Linha Íntima</a>
+        <a href="#produtos" @click="activeCategory = 'kits'" class="text-terracotta-500 font-bold hover:underline">Kits & Presentes</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 🌿 HERO BANNER -->
+  <section class="relative bg-botanic-800 text-sand-50 py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between">
+      <div class="md:w-1/2 space-y-6">
+        <span class="bg-botanic-700/80 text-sand-100 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-botanic-500/30">100% Vegano & Artesanal</span>
+        <h1 class="font-serif text-4xl md:text-6xl leading-tight">O poder dos óleos essenciais na sua pele.</h1>
+        <p class="text-sand-200 text-sm md:text-base max-w-lg font-light leading-relaxed">
+          Cosméticos botânicos desenvolvidos para nutrir seu corpo e acalmar sua mente, livres de alumínio, parabenos e fragrâncias sintéticas.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
+          <a href="#produtos" class="w-full sm:w-auto bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-sm text-center">
+            Explorar Coleção
+          </a>
+          <a href="#manifesto" class="w-full sm:w-auto border border-sand-300/40 hover:bg-sand-50/10 text-sand-100 font-medium px-6 py-3.5 rounded-full transition text-sm text-center">
+            Nossa Filosofia
+          </a>
+        </div>
+      </div>
+      <div class="md:w-5/12 mt-12 md:mt-0">
+        <div class="relative bg-sand-100/10 backdrop-blur-md p-4 rounded-2xl border border-sand-100/20 shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=800&q=80" alt="Kit Ritual Biotiê" class="rounded-xl object-cover h-80 w-full">
+          <div class="absolute -bottom-4 -left-4 bg-sand-50 text-botanic-900 p-4 rounded-xl shadow-lg border border-sand-200 text-xs max-w-xs">
+            <p class="font-bold text-sm">Kit Ritual Natural Biotiê</p>
+            <p class="text-gray-500 mt-0.5">Sabonete + Desodorante Spray + Hidratante</p>
+            <span class="text-terracotta-500 font-bold mt-1 block">R$ 239,13 <span class="line-through text-gray-400 font-normal">R$ 272,70</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🏆 SELOS DE BENEFÍCIOS -->
+  <section class="border-b border-sand-200 bg-sand-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="flex flex-col items-center space-y-2">
+        <div class="w-12 h-12 bg-botanic-100 text-botanic-700 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-leaf"></i></div>
+        <h4 class="font-bold text-xs uppercase tracking-wider">100% Vegano & Clean</h4>
+        <p class="text-xs text-gray-500">Sem químicos nocivos ou parabenos</p>
+      </div>
+      <div class="flex flex-col items-center space-y-2">
+        <div class="w-12 h-12 bg-botanic-100 text-botanic-700 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4 class="font-bold text-xs uppercase tracking-wider">Compra Segura</h4>
+        <p class="text-xs text-gray-500">Seus dados totalmente protegidos</p>
+      </div>
+      <div class="flex flex-col items-center space-y-2">
+        <div class="w-12 h-12 bg-botanic-100 text-botanic-700 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-credit-card"></i></div>
+        <h4 class="font-bold text-xs uppercase tracking-wider">Parcele em até 3x</h4>
+        <p class="text-xs text-gray-500">Sem juros ou 3% OFF no PIX</p>
+      </div>
+      <div class="flex flex-col items-center space-y-2">
+        <div class="w-12 h-12 bg-botanic-100 text-botanic-700 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-box-open"></i></div>
+        <h4 class="font-bold text-xs uppercase tracking-wider">Entrega em todo Brasil</h4>
+        <p class="text-xs text-gray-500">Embalagens ecológicas sustentáveis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📦 VITRINE DE PRODUTOS -->
+  <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-sand-200 pb-4">
+      <div>
+        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Nossos Queridinhos</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-botanic-900 mt-1">Conheça nossos produtos artesanais</h2>
+      </div>
+      
+      <!-- Filtros de Categorias -->
+      <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+        <button @click="activeCategory = 'todos'" 
+                :class="activeCategory === 'todos' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
+                class="px-4 py-2 rounded-full text-xs font-semibold transition">Todos</button>
+        <button @click="activeCategory = 'corpo'" 
+                :class="activeCategory === 'corpo' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
+                class="px-4 py-2 rounded-full text-xs font-semibold transition">Corpo & Desodorantes</button>
+        <button @click="activeCategory = 'skincare'" 
+                :class="activeCategory === 'skincare' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
+                class="px-4 py-2 rounded-full text-xs font-semibold transition">Skincare</button>
+        <button @click="activeCategory = 'aromaterapia'" 
+                :class="activeCategory === 'aromaterapia' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
+                class="px-4 py-2 rounded-full text-xs font-semibold transition">Aromaterapia</button>
+        <button @click="activeCategory = 'kits'" 
+                :class="activeCategory === 'kits' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
+                class="px-4 py-2 rounded-full text-xs font-semibold transition">Kits</button>
+      </div>
+    </div>
+
+    <!-- Grid de Cards de Produtos -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <template x-for="product in filteredProducts()" :key="product.id">
+        <div class="group bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          
+          <!-- Imagem e Badges -->
+          <div class="relative bg-sand-100 overflow-hidden h-64">
+            <template x-if="product.badge">
+              <span class="absolute top-3 left-3 z-10 bg-terracotta-500 text-white font-bold text-[10px] uppercase px-2.5 py-1 rounded-full shadow" x-text="product.badge"></span>
+            </template>
+            <img :src="product.image" :alt="product.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <button class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-600 hover:text-red-500 transition">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <!-- Conteúdo -->
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-amber-500 text-xs mb-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-gray-400 font-normal ml-1">(4.9)</span>
+              </div>
+              <h3 class="font-bold text-sm text-botanic-900 group-hover:text-botanic-500 transition leading-snug" x-text="product.title"></h3>
+              <p class="text-xs text-gray-500 mt-1 font-light" x-text="product.sub"></p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-sand-100">
+              <div class="flex items-baseline space-x-2">
+                <span class="text-lg font-extrabold text-botanic-900" x-text="formatMoney(product.price)"></span>
+                <template x-if="product.oldPrice">
+                  <span class="text-xs text-gray-400 line-through" x-text="formatMoney(product.oldPrice)"></span>
+                </template>
+              </div>
+              <p class="text-[11px] text-emerald-700 font-medium">
+                <span x-text="formatMoney(product.price * 0.97)"></span> no PIX (3% OFF)
+              </p>
+
+              <!-- Botão Adicionar -->
+              <button @click="addToCart(product)" 
+                      class="mt-4 w-full bg-botanic-700 hover:bg-botanic-800 text-sand-50 font-semibold text-xs py-2.5 rounded-xl transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Adicionar ao Carrinho</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <!-- 📖 SEÇÃO MANIFESTO / POR QUE A BIOTIÊ -->
+  <section id="manifesto" class="bg-sand-100 py-20 border-t border-b border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Conexão com a Natureza</span>
+        <h2 class="font-serif text-3xl md:text-5xl text-botanic-900 mt-2 mb-6 leading-tight">Beleza limpa, consciente e com propósito.</h2>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          A Biotiê nasceu do desejo de reconectar a rotina diária de cuidados com os ritmos da natureza. Acreditamos que você não precisa comprometer sua saúde ou o meio ambiente para ter resultados incríveis.
+        </p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Todas as nossas fórmulas são artesanais, ricas em extratos botânicos e óleos essenciais puros, que além de tratarem a pele, trazem os benefícios terapêuticos da aromaterapia.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="border-l-2 border-terracotta-500 pl-4">
+            <span class="font-serif text-2xl font-bold text-botanic-800">100%</span>
+            <p class="text-xs text-gray-500">Livre de alumínio e parabenos</p>
+          </div>
+          <div class="border-l-2 border-botanic-500 pl-4">
+            <span class="font-serif text-2xl font-bold text-botanic-800">Cruelty-Free</span>
+            <p class="text-xs text-gray-500">Nunca testado em animais</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sérum e Hidratante">
+      </div>
+    </div>
+  </section>
+
+  <!-- 📩 NEWSLETTER -->
+  <section class="bg-botanic-900 text-sand-50 py-16">
+    <div class="max-w-3xl mx-auto text-center px-4">
+      <i class="fa-regular fa-paper-plane text-terracotta-500 text-3xl mb-4"></i>
+      <h2 class="font-serif text-3xl font-semibold">Ganhe 10% OFF na sua 1ª compra</h2>
+      <p class="text-sand-300 text-xs md:text-sm mt-2 mb-8 font-light">
+        Inscreva-se para receber novidades, dicas exclusivas de autocuidado e cupons especiais da Biotiê.
+      </p>
+      <form @submit.prevent="showToast('Obrigado! Seu cupom BIOTIE10 já está ativo.')" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="Digite seu melhor e-mail" required 
+               class="flex-1 bg-botanic-800 text-white placeholder-gray-400 text-sm px-5 py-3 rounded-full border border-botanic-700 focus:outline-none focus:border-terracotta-500">
+        <button type="submit" class="bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-xs px-8 py-3 rounded-full transition">
+          Quero Desconto
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 🛒 GAVETA DO CARRINHO (SLIDE-OVER CART) -->
+  <div x-show="cartOpen" class="relative z-50">
+    <!-- Backdrop Overlay -->
+    <div x-show="cartOpen" x-transition.opacity @click="cartOpen = false" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
+
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div x-show="cartOpen" x-transition:enter="transform transition ease-in-out duration-300"
+           x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+           x-transition:leave="transform transition ease-in-out duration-300"
+           x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+           class="w-screen max-w-md bg-sand-50 shadow-2xl flex flex-col justify-between">
+        
+        <!-- Topo do Carrinho -->
+        <div class="p-6 border-b border-sand-200 flex justify-between items-center bg-sand-100">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-bag-shopping text-botanic-700"></i>
+            <h3 class="font-serif text-lg font-bold text-botanic-900">Seu Carrinho</h3>
+            <span class="text-xs text-gray-500 font-normal" x-text="`(${cartTotalCount()} itens)`"></span>
+          </div>
+          <button @click="cartOpen = false" class="text-gray-500 hover:text-black text-lg p-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Progresso Frete Grátis -->
+        <div class="bg-botanic-100 p-3 px-6 border-b border-sand-200">
+          <div class="flex justify-between text-xs font-semibold mb-1 text-botanic-800">
+            <span x-text="freeShippingRemaining() > 0 ? `Faltam ${formatMoney(freeShippingRemaining())} para Frete Grátis!` : '🎉 Você ganhou Frete Grátis!'"></span>
+          </div>
+          <div class="w-full bg-sand-200 rounded-full h-2">
+            <div class="bg-botanic-700 h-2 rounded-full transition-all duration-500" 
+                 :style="`width: ${Math.min(100, (cartSubtotal() / 199) * 100)}%`"></div>
+          </div>
+        </div>
+
+        <!-- Lista de Itens do Carrinho -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4">
+          <template x-if="cart.length === 0">
+            <div class="text-center py-16 text-gray-400">
+              <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-sand-300"></i>
+              <p class="text-sm">Seu carrinho está vazio.</p>
+              <button @click="cartOpen = false" class="mt-4 text-xs font-bold text-terracotta-500 underline">Começar a comprar</button>
+            </div>
+          </template>
+
+          <template x-for="(item, index) in cart" :key="item.id">
+            <div class="flex items-center space-x-4 border-b border-sand-200 pb-4">
+              <img :src="item.image" :alt="item.title" class="w-16 h-16 object-cover rounded-xl border border-sand-300">
+              <div class="flex-1">
+                <h4 class="font-bold text-xs text-botanic-900" x-text="item.title"></h4>
+                <p class="text-xs text-gray-500" x-text="formatMoney(item.price)"></p>
+                
+                <!-- Ajustar Quantidade -->
+                <div class="flex items-center space-x-3 mt-2">
+                  <div class="flex items-center border border-sand-300 rounded-lg bg-white">
+                    <button @click="updateQty(index, -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">-</button>
+                    <span class="px-2 text-xs font-bold" x-text="item.qty"></span>
+                    <button @click="updateQty(index, 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">+</button>
+                  </div>
+                  <button @click="removeFromCart(index)" class="text-xs text-red-500 hover:underline">Remover</button>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-bold text-xs text-botanic-900" x-text="formatMoney(item.price * item.qty)"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Rodapé do Carrinho (Resumo) -->
+        <div x-show="cart.length > 0" class="p-6 border-t border-sand-200 bg-sand-100 space-y-3">
+          
+          <!-- Input Cupom -->
+          <div class="flex space-x-2">
+            <input type="text" x-model="couponCode" placeholder="Cupom de Desconto" 
+                   class="flex-1 bg-white border border-sand-300 rounded-lg text-xs px-3 py-2 uppercase">
+            <button @click="applyCoupon()" class="bg-botanic-800 text-white px-4 py-2 rounded-lg text-xs font-bold">Aplicar</button>
+          </div>
+
+          <!-- Totais -->
+          <div class="space-y-1 text-xs pt-2">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal:</span>
+              <span x-text="formatMoney(cartSubtotal())"></span>
+            </div>
+            <template x-if="discountApplied">
+              <div class="flex justify-between text-emerald-700 font-semibold">
+                <span>Cupom BIOTIE10 (10%):</span>
+                <span x-text="`- ${formatMoney(cartSubtotal() * 0.1)}`"></span>
+              </div>
+            </template>
+            <div class="flex justify-between text-gray-600">
+              <span>Desconto PIX (3% extra):</span>
+              <span class="text-emerald-700" x-text="`- ${formatMoney(cartTotalWithDiscounts() * 0.03)}`"></span>
+            </div>
+            <div class="flex justify-between text-sm font-bold text-botanic-900 pt-2 border-t border-sand-200">
+              <span>Total no PIX:</span>
+              <span class="text-base text-botanic-800" x-text="formatMoney(cartTotalWithDiscounts() * 0.97)"></span>
+            </div>
+          </div>
+
+          <!-- Botão Finalizar -->
+          <button @click="checkout()" class="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-lock"></i>
+            <span>Finalizar Compra</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 🦶 FOOTER -->
+  <footer class="bg-sand-200 text-botanic-900 pt-16 pb-8 border-t border-sand-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <span class="font-serif text-2xl font-bold text-botanic-800">Biotiê Natural</span>
+        <p class="text-xs text-gray-600 mt-3 leading-relaxed">
+          Cosméticos naturais, veganos e artesanais. O cuidado que sua pele merece com o afeto que a natureza oferece.
+        </p>
+        <div class="flex space-x-4 mt-4 text-botanic-700 text-lg">
+          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Navegação</h4>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li><a href="#" class="hover:underline">Desodorantes Spray</a></li>
+          <li><a href="#" class="hover:underline">Hidratantes Corporais</a></li>
+          <li><a href="#" class="hover:underline">Sabonetes Faciais & Argilas</a></li>
+          <li><a href="#" class="hover:underline">Aromaterapia</a></li>
+          <li><a href="#" class="hover:underline">Kits Presente</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Atendimento</h4>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>Central de Atendimento</li>
+          <li>WhatsApp: (16) 99111-0781</li>
+          <li>E-mail: contato@biotie.com.br</li>
+          <li>Segunda a Sexta das 9h às 18h</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Pagamento & Segurança</h4>
+        <div class="flex flex-wrap gap-2 text-2xl text-gray-600">
+          <i class="fa-brands fa-pix text-emerald-600"></i>
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-apple-pay"></i>
+        </div>
+        <span class="block text-[11px] text-gray-500 mt-3"><i class="fa-solid fa-lock"></i> Ambiente 100% Criptografado</span>
+      </div>
+    </div>
+
+    <div class="text-center text-xs text-gray-500 pt-8 border-t border-sand-300">
+      <p>© 2026 Biotiê Natural. Todos os direitos reservados. Projeto compatível para publicação via GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <!-- ⚙️ SCRIPT DE LÓGICA DO SHOP (Alpine.js) -->
+  <script>
+    function shopApp() {
+      return {
+        cartOpen: false,
+        mobileMenuOpen: false,
+        activeCategory: 'todos',
+        couponCode: '',
+        discountApplied: false,
+        toast: { show: false, message: '' },
+        cart: [],
+        
+        // BASE DE DADOS DOS PRODUTOS DA BIOTIÊ
+        products: [
+          {
+            id: 1,
+            title: "Desodorante Natural em Spray",
+            sub: "Tangerina, Litsea Cubeba e Cumaru (50 ml)",
+            price: 48.90,
+            oldPrice: 51.50,
+            badge: "Mais Vendido",
+            category: "corpo",
+            image: "https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 2,
+            title: "Hidratante Natural Corporal",
+            sub: "Tangerina, Litsea Cubeba e Cumaru (200 ml)",
+            price: 109.90,
+            badge: "Lançamento",
+            category: "corpo",
+            image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 3,
+            title: "Kit Trio Spray Aromaterapia",
+            sub: "Calma, Energia e Foco (3x 120ml)",
+            price: 205.20,
+            oldPrice: 228.00,
+            badge: "10% OFF",
+            category: "aromaterapia",
+            image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 4,
+            title: "Sabonete Facial Natural",
+            sub: "Carvão Ativado, Melaleuca e Menta (60g)",
+            price: 45.90,
+            category: "skincare",
+            image: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 5,
+            title: "Kit Detox das Axilas Especial",
+            sub: "Com Máscara de Argila + Desodorante + Mini Ecobag",
+            price: 157.70,
+            oldPrice: 160.70,
+            badge: "Kit Especial",
+            category: "kits",
+            image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 6,
+            title: "Óleo Calmante Íntimo Feel Lub",
+            sub: "Alívio e Hidratação com Óleos Botânicos (30ml)",
+            price: 98.00,
+            category: "intimo",
+            image: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 7,
+            title: "Máscara Natural de Argila Verde",
+            sub: "Argila Verde, Menta e Melaleuca (30 ml)",
+            price: 53.90,
+            category: "skincare",
+            image: "https://images.unsplash.com/photo-1567928269569-b36214240751?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            id: 8,
+            title: "Kit Mini Trio Desodorante",
+            sub: "Com Mini Ecobag Biotiê",
+            price: 65.90,
+            category: "kits",
+            image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&q=80"
+          }
+        ],
+
+        // LÓGICA DE FILTRAGEM
+        filteredProducts() {
+          if (this.activeCategory === 'todos') return this.products;
+          return this.products.filter(p => p.category === this.activeCategory);
+        },
+
+        // CARRINHO DE COMPRAS
+        addToCart(product) {
+          const existing = this.cart.find(item => item.id === product.id);
+          if (existing) {
+            existing.qty++;
+          } else {
+            this.cart.push({ ...product, qty: 1 });
+          }
+          this.showToast(`"${product.title}" adicionado ao carrinho!`);
+          this.cartOpen = true;
+        },
+
+        updateQty(index, change) {
+          this.cart[index].qty += change;
+          if (this.cart[index].qty <= 0) {
+            this.cart.splice(index, 1);
+          }
+        },
+
+        removeFromCart(index) {
+          this.cart.splice(index, 1);
+        },
+
+        cartTotalCount() {
+          return this.cart.reduce((acc, item) => acc + item.qty, 0);
+        },
+
+        cartSubtotal() {
+          return this.cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+        },
+
+        cartTotalWithDiscounts() {
+          let total = this.cartSubtotal();
+          if (this.discountApplied) total *= 0.90; // 10% cupom
+          return total;
+        },
+
+        freeShippingRemaining() {
+          return Math.max(0, 199 - this.cartSubtotal());
+        },
+
+        applyCoupon() {
+          if (this.couponCode.trim().toUpperCase() === 'BIOTIE10') {
+            this.discountApplied = true;
+            this.showToast("Cupom BIOTIE10 aplicado com sucesso (10% OFF)!");
+          } else {
+            this.showToast("Cupom inválido. Tente BIOTIE10.");
+          }
+        },
+
+        checkout() {
+          alert("🎉 Pedido simulado com sucesso! Redirecionando para o pagamento...");
+          this.cart = [];
+          this.cartOpen = false;
+        },
+
+        // AUXILIARES
+        formatMoney(value) {
+          return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        },
+
+        showToast(msg) {
+          this.toast.message = msg;
+          this.toast.show = true;
+          setTimeout(() => { this.toast.show = false; }, 3500);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
