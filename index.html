@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Farmaura | Cosméticos Naturais, Veganos e Artesanais</title>
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -48,7 +45,6 @@
     }
   </script>
 
-  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <style>
@@ -60,14 +56,12 @@
 <body class="bg-sand-50 text-botanic-900 font-sans antialiased selection:bg-botanic-500 selection:text-white"
       x-data="shopApp()" x-cloak>
 
-  <!-- 🟢 TOAST NOTIFICATION -->
   <div x-show="toast.show" x-transition 
        class="fixed bottom-5 right-5 z-[60] bg-botanic-900 text-sand-50 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-botanic-700">
     <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
     <span x-text="toast.message" class="text-sm font-medium"></span>
   </div>
 
-  <!-- 📢 TOP ANNOUNCEMENT BAR -->
   <div class="bg-botanic-800 text-sand-100 text-xs py-2 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0">
       <div class="flex items-center space-x-4">
@@ -86,23 +80,19 @@
     </div>
   </div>
 
-  <!-- 🛍️ HEADER PRINCIPAL -->
   <header class="sticky top-0 z-30 bg-sand-50/90 backdrop-blur-md border-b border-sand-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Mobile Menu Toggle -->
         <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-botanic-900 text-xl p-2">
           <i class="fa-solid fa-bars"></i>
         </button>
 
-        <!-- LOGO -->
         <a href="#" class="flex items-center space-x-2">
           <span class="font-serif text-2xl md:text-3xl font-semibold tracking-wide text-botanic-800">Farmaura</span>
           <span class="text-xs uppercase tracking-widest text-terracotta-500 font-sans border-l border-sand-300 pl-2 hidden sm:inline">Natural</span>
         </a>
 
-        <!-- BARRA DE BUSCA -->
         <div class="hidden md:flex flex-1 max-w-md mx-8">
           <div class="relative w-full">
             <input type="text" placeholder="Buscar sabonete em pó, produtos..." 
@@ -113,7 +103,6 @@
           </div>
         </div>
 
-        <!-- AÇÕES DO USUÁRIO -->
         <div class="flex items-center space-x-5">
           <a href="#" class="hidden sm:flex items-center text-sm font-medium hover:text-botanic-500 transition">
             <i class="fa-regular fa-user text-lg mr-1.5"></i> Minha Conta
@@ -124,7 +113,6 @@
             <span class="absolute -top-1.5 -right-2 bg-terracotta-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
           </button>
 
-          <!-- Botão Carrinho -->
           <button @click="cartOpen = true" class="relative bg-botanic-700 text-sand-50 hover:bg-botanic-800 px-4 py-2 rounded-full transition flex items-center space-x-2">
             <i class="fa-solid fa-bag-shopping"></i>
             <span class="text-xs font-semibold hidden sm:inline">Carrinho</span>
@@ -133,7 +121,6 @@
         </div>
       </div>
 
-      <!-- MENU NAVEGAÇÃO DESKTOP -->
       <nav class="hidden md:flex justify-center space-x-8 py-3 border-t border-sand-200/60 text-xs font-semibold uppercase tracking-wider">
         <a href="#produtos" @click="activeCategory = 'todos'" class="hover:text-terracotta-500 transition">Todos os Produtos</a>
         <a href="#produtos" @click="activeCategory = 'corpo'" class="hover:text-terracotta-500 transition">Corpo & Banho</a>
@@ -143,7 +130,6 @@
     </div>
   </header>
 
-  <!-- 🌿 HERO BANNER -->
   <section class="relative bg-botanic-800 text-sand-50 py-20 md:py-32 overflow-hidden">
     <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80');"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between">
@@ -175,7 +161,6 @@
     </div>
   </section>
 
-  <!-- 🏆 SELOS DE BENEFÍCIOS -->
   <section class="border-b border-sand-200 bg-sand-100 py-8">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="flex flex-col items-center space-y-2">
@@ -201,7 +186,6 @@
     </div>
   </section>
 
-  <!-- 📦 VITRINE DE PRODUTOS -->
   <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-sand-200 pb-4">
       <div>
@@ -210,12 +194,10 @@
       </div>
     </div>
 
-    <!-- Grid de Cards de Produtos -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
       <template x-for="product in filteredProducts()" :key="product.id">
         <div class="group bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           
-          <!-- Imagem e Badges -->
           <div class="relative bg-sand-100 overflow-hidden h-72">
             <template x-if="product.badge">
               <span class="absolute top-3 left-3 z-10 bg-terracotta-500 text-white font-bold text-[10px] uppercase px-2.5 py-1 rounded-full shadow" x-text="product.badge"></span>
@@ -226,7 +208,6 @@
             </button>
           </div>
 
-          <!-- Conteúdo -->
           <div class="p-5 flex-1 flex flex-col justify-between">
             <div>
               <div class="text-amber-500 text-xs mb-1">
@@ -234,581 +215,4 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <span class="text-gray-400 font-normal ml-1">(5.0)</span>
-              </div>
-              <h3 class="font-bold text-base text-botanic-900 group-hover:text-botanic-500 transition leading-snug" x-text="product.title"></h3>
-              <p class="text-xs text-gray-500 mt-1 font-light leading-relaxed" x-text="product.sub"></p>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-sand-100">
-              <div class="flex items-baseline space-x-2">
-                <span class="text-xl font-extrabold text-botanic-900" x-text="formatMoney(product.price)"></span>
-              </div>
-              <p class="text-[11px] text-emerald-700 font-medium">
-                <span x-text="formatMoney(product.price * 0.97)"></span> no PIX (3% OFF)
-              </p>
-
-              <!-- Botão Adicionar -->
-              <button @click="addToCart(product)" 
-                      class="mt-4 w-full bg-botanic-700 hover:bg-botanic-800 text-sand-50 font-semibold text-xs py-3 rounded-xl transition flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-plus text-xs"></i>
-                <span>Adicionar ao Carrinho</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </template>
-    </div>
-  </section>
-
-  <!-- 📖 SEÇÃO MANIFESTO / POR QUE A FARMAURA -->
-  <section id="manifesto" class="bg-sand-100 py-20 border-t border-b border-sand-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Conexão com a Natureza</span>
-        <h2 class="font-serif text-3xl md:text-5xl text-botanic-900 mt-2 mb-6 leading-tight">Beleza limpa, consciente e com propósito.</h2>
-        <p class="text-gray-600 text-sm leading-relaxed mb-4">
-          A Farmaura nasceu do desejo de reconectar a rotina diária de cuidados com os ritmos da natureza. Acreditamos que você não precisa comprometer sua saúde ou o meio ambiente para ter resultados incríveis.
-        </p>
-        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-          Nossas fórmulas são artesanais e ecológicas, ricas em extratos botânicos e pensadas para proporcionar a máxima eficiência com o menor impacto ambiental.
-        </p>
-        <div class="grid grid-cols-2 gap-4 pt-2">
-          <div class="border-l-2 border-terracotta-500 pl-4">
-            <span class="font-serif text-2xl font-bold text-botanic-800">100%</span>
-            <p class="text-xs text-gray-500">Biodegradável e sustentável</p>
-          </div>
-          <div class="border-l-2 border-botanic-500 pl-4">
-            <span class="font-serif text-2xl font-bold text-botanic-800">Cruelty-Free</span>
-            <p class="text-xs text-gray-500">Nunca testado em animais</p>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
-        <img src="wayfarer-ziplock.png" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sabonete Natural">
-      </div>
-    </div>
-  </section>
-
-  <!-- ✉️ SEÇÃO DE CONTATO (FORMSPREE DIRETO) -->
-  <section id="contato" class="py-16 bg-sand-50 border-b border-sand-200">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Atendimento</span>
-      <h2 class="font-serif text-3xl font-semibold text-botanic-900 mt-1 mb-2">Fale Conosco</h2>
-      <p class="text-xs md:text-sm text-gray-600 mb-8">Envie suas dúvidas, sugestões ou entre em contato direto com a nossa equipe.</p>
-
-      <form action="https://formspree.io/f/xaeqegev" method="POST" class="bg-white p-6 sm:p-8 rounded-2xl border border-sand-200 shadow-sm text-left space-y-4">
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu Nome *</label>
-          <input type="text" name="nome" required placeholder="Digite seu nome completo" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu E-mail *</label>
-          <input type="email" name="email" required placeholder="seuemail@empresa.com" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Mensagem *</label>
-          <textarea name="mensagem" rows="4" required placeholder="Escreva sua mensagem aqui..." class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none"></textarea>
-        </div>
-        <button type="submit" class="w-full bg-botanic-700 hover:bg-botanic-800 text-white font-bold py-3 rounded-xl text-xs transition shadow-md">
-          Enviar Mensagem
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- 📩 NEWSLETTER -->
-  <section class="bg-botanic-900 text-sand-50 py-16">
-    <div class="max-w-3xl mx-auto text-center px-4">
-      <i class="fa-regular fa-paper-plane text-terracotta-500 text-3xl mb-4"></i>
-      <h2 class="font-serif text-3xl font-semibold">Ganhe 10% OFF na sua 1ª compra</h2>
-      <p class="text-sand-300 text-xs md:text-sm mt-2 mb-8 font-light">
-        Inscreva-se para receber novidades, dicas exclusivas de autocuidado e cupons especiais da Farmaura.
-      </p>
-      <form @submit.prevent="showToast('Obrigado! Seu cupom FARMAURA10 já está ativo.')" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-        <input type="email" placeholder="Digite seu melhor e-mail" required 
-               class="flex-1 bg-botanic-800 text-white placeholder-gray-400 text-sm px-5 py-3 rounded-full border border-botanic-700 focus:outline-none focus:border-terracotta-500">
-        <button type="submit" class="bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-xs px-8 py-3 rounded-full transition">
-          Quero Desconto
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- 🛒 GAVETA DO CARRINHO (SLIDE-OVER CART) -->
-  <div x-show="cartOpen" class="relative z-50">
-    <div x-show="cartOpen" x-transition.opacity @click="cartOpen = false" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
-
-    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-      <div x-show="cartOpen" x-transition:enter="transform transition ease-in-out duration-300"
-           x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-           x-transition:leave="transform transition ease-in-out duration-300"
-           x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-           class="w-screen max-w-md bg-sand-50 shadow-2xl flex flex-col justify-between">
-        
-        <div class="p-6 border-b border-sand-200 flex justify-between items-center bg-sand-100">
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-bag-shopping text-botanic-700"></i>
-            <h3 class="font-serif text-lg font-bold text-botanic-900">Seu Carrinho</h3>
-            <span class="text-xs text-gray-500 font-normal" x-text="`(${cartTotalCount()} itens)`"></span>
-          </div>
-          <button @click="cartOpen = false" class="text-gray-500 hover:text-black text-lg p-1">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <div class="bg-botanic-100 p-3 px-6 border-b border-sand-200">
-          <div class="flex justify-between text-xs font-semibold mb-1 text-botanic-800">
-            <span x-text="freeShippingRemaining() > 0 ? `Faltam ${formatMoney(freeShippingRemaining())} para Frete Grátis!` : '🎉 Você ganhou Frete Grátis!'"></span>
-          </div>
-          <div class="w-full bg-sand-200 rounded-full h-2">
-            <div class="bg-botanic-700 h-2 rounded-full transition-all duration-500" 
-                 :style="`width: ${Math.min(100, (cartSubtotal() / 199) * 100)}%`"></div>
-          </div>
-        </div>
-
-        <div class="flex-1 overflow-y-auto p-6 space-y-4">
-          <template x-if="cart.length === 0">
-            <div class="text-center py-16 text-gray-400">
-              <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-sand-300"></i>
-              <p class="text-sm">Seu carrinho está vazio.</p>
-              <button @click="cartOpen = false" class="mt-4 text-xs font-bold text-terracotta-500 underline">Começar a comprar</button>
-            </div>
-          </template>
-
-          <template x-for="(item, index) in cart" :key="item.id">
-            <div class="flex items-center space-x-4 border-b border-sand-200 pb-4">
-              <img :src="item.image" :alt="item.title" class="w-16 h-16 object-cover rounded-xl border border-sand-300">
-              <div class="flex-1">
-                <h4 class="font-bold text-xs text-botanic-900" x-text="item.title"></h4>
-                <p class="text-xs text-gray-500" x-text="formatMoney(item.price)"></p>
-                
-                <div class="flex items-center space-x-3 mt-2">
-                  <div class="flex items-center border border-sand-300 rounded-lg bg-white">
-                    <button @click="updateQty(index, -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">-</button>
-                    <span class="px-2 text-xs font-bold" x-text="item.qty"></span>
-                    <button @click="updateQty(index, 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-sand-100">+</button>
-                  </div>
-                  <button @click="removeFromCart(index)" class="text-xs text-red-500 hover:underline">Remover</button>
-                </div>
-              </div>
-              <div class="text-right">
-                <span class="font-bold text-xs text-botanic-900" x-text="formatMoney(item.price * item.qty)"></span>
-              </div>
-            </div>
-          </template>
-        </div>
-
-        <div x-show="cart.length > 0" class="p-6 border-t border-sand-200 bg-sand-100 space-y-3">
-          <div class="flex space-x-2">
-            <input type="text" x-model="couponCode" placeholder="Cupom de Desconto" 
-                   class="flex-1 bg-white border border-sand-300 rounded-lg text-xs px-3 py-2 uppercase">
-            <button @click="applyCoupon()" class="bg-botanic-800 text-white px-4 py-2 rounded-lg text-xs font-bold">Aplicar</button>
-          </div>
-
-          <div class="space-y-1 text-xs pt-2">
-            <div class="flex justify-between text-gray-600">
-              <span>Subtotal:</span>
-              <span x-text="formatMoney(cartSubtotal())"></span>
-            </div>
-            <template x-if="discountApplied">
-              <div class="flex justify-between text-emerald-700 font-semibold">
-                <span>Cupom FARMAURA10 (10%):</span>
-                <span x-text="`- ${formatMoney(cartSubtotal() * 0.1)}`"></span>
-              </div>
-            </template>
-            <div class="flex justify-between text-gray-600">
-              <span>Desconto PIX (3% extra):</span>
-              <span class="text-emerald-700" x-text="`- ${formatMoney(cartTotalWithDiscounts() * 0.03)}`"></span>
-            </div>
-            <div class="flex justify-between text-sm font-bold text-botanic-900 pt-2 border-t border-sand-200">
-              <span>Total no PIX:</span>
-              <span class="text-base text-botanic-800" x-text="formatMoney(cartTotalWithDiscounts() * 0.97)"></span>
-            </div>
-          </div>
-
-          <!-- Botão que abre a modal de Checkout -->
-          <button @click="openCheckoutModal()" class="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-credit-card"></i>
-            <span>Ir para o Pagamento</span>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- 📝 MODAL DE CHECKOUT / PREENCHIMENTO DE DADOS -->
-  <div x-show="checkoutModalOpen" class="relative z-50">
-    <div x-show="checkoutModalOpen" x-transition.opacity @click="checkoutModalOpen = false" class="fixed inset-0 bg-black/60 backdrop-blur-xs"></div>
-
-    <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 lg:p-8 flex items-center justify-center">
-      <div x-show="checkoutModalOpen" x-transition
-           class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden border border-sand-300 flex flex-col max-h-[90vh]">
-        
-        <!-- Header da Modal -->
-        <div class="bg-botanic-800 text-sand-50 p-5 px-6 flex justify-between items-center">
-          <div>
-            <h3 class="font-serif text-xl font-bold">Finalizar Pedido - Farmaura</h3>
-            <p class="text-xs text-sand-200">Preencha seus dados para receber o comprovante e os dados de entrega.</p>
-          </div>
-          <button @click="checkoutModalOpen = false" class="text-sand-300 hover:text-white text-xl">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <!-- Conteúdo do Formulário -->
-        <div class="p-6 overflow-y-auto space-y-6">
-          <form id="checkoutForm" @submit.prevent="submitOrder()" class="space-y-6">
-            
-            <!-- 1. Dados Pessoais -->
-            <div>
-              <h4 class="text-xs font-bold uppercase tracking-wider text-botanic-800 border-b border-sand-200 pb-2 mb-3 flex items-center">
-                <i class="fa-regular fa-id-card mr-2 text-terracotta-500"></i> Dados Pessoais
-              </h4>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Nome Completo *</label>
-                  <input type="text" x-model="customer.name" required placeholder="Ex: Maria Silva"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">E-mail *</label>
-                  <input type="email" x-model="customer.email" required placeholder="seu@email.com"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">WhatsApp / Telefone *</label>
-                  <input type="tel" x-model="customer.phone" required placeholder="(11) 99999-9999"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">CPF (opcional)</label>
-                  <input type="text" x-model="customer.cpf" placeholder="000.000.000-00"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. Endereço de Entrega -->
-            <div>
-              <h4 class="text-xs font-bold uppercase tracking-wider text-botanic-800 border-b border-sand-200 pb-2 mb-3 flex items-center">
-                <i class="fa-solid fa-truck-fast mr-2 text-terracotta-500"></i> Endereço de Entrega
-              </h4>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="sm:col-span-1">
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">CEP *</label>
-                  <input type="text" x-model="customer.cep" required placeholder="00000-000"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Rua / Logradouro *</label>
-                  <input type="text" x-model="customer.street" required placeholder="Av. Paulista"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Número *</label>
-                  <input type="text" x-model="customer.number" required placeholder="123"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Complemento</label>
-                  <input type="text" x-model="customer.complement" placeholder="Apto 42"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Bairro *</label>
-                  <input type="text" x-model="customer.neighborhood" required placeholder="Centro"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Cidade *</label>
-                  <input type="text" x-model="customer.city" required placeholder="São Paulo"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Estado *</label>
-                  <input type="text" x-model="customer.state" required placeholder="SP"
-                         class="w-full bg-sand-50 border border-sand-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Forma de Pagamento -->
-            <div>
-              <h4 class="text-xs font-bold uppercase tracking-wider text-botanic-800 border-b border-sand-200 pb-2 mb-3 flex items-center">
-                <i class="fa-solid fa-credit-card mr-2 text-terracotta-500"></i> Forma de Pagamento
-              </h4>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <label class="border border-sand-300 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-botanic-500 transition bg-sand-50">
-                  <input type="radio" name="paymentMethod" value="pix" x-model="customer.payment" checked class="text-botanic-700 focus:ring-botanic-500">
-                  <div>
-                    <span class="block text-xs font-bold text-botanic-900">PIX (3% de Desconto)</span>
-                    <span class="block text-[10px] text-emerald-700">Aprovação imediata</span>
-                  </div>
-                </label>
-
-                <label class="border border-sand-300 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-botanic-500 transition bg-sand-50">
-                  <input type="radio" name="paymentMethod" value="cartao" x-model="customer.payment" class="text-botanic-700 focus:ring-botanic-500">
-                  <div>
-                    <span class="block text-xs font-bold text-botanic-900">Cartão de Crédito</span>
-                    <span class="block text-[10px] text-gray-500">Parcele em até 3x sem juros</span>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Resumo do Valor do Pedido -->
-            <div class="bg-sand-100 p-4 rounded-xl space-y-2 border border-sand-200">
-              <div class="flex justify-between text-xs text-gray-600">
-                <span>Subtotal dos Produtos:</span>
-                <span x-text="formatMoney(cartSubtotal())"></span>
-              </div>
-              <template x-if="discountApplied">
-                <div class="flex justify-between text-xs text-emerald-700 font-semibold">
-                  <span>Cupom (FARMAURA10):</span>
-                  <span x-text="`- ${formatMoney(cartSubtotal() * 0.1)}`"></span>
-                </div>
-              </template>
-              <div class="flex justify-between text-sm font-bold text-botanic-900 pt-2 border-t border-sand-300">
-                <span>Total Final:</span>
-                <span class="text-base text-terracotta-500" x-text="formatMoney(customer.payment === 'pix' ? cartTotalWithDiscounts() * 0.97 : cartTotalWithDiscounts())"></span>
-              </div>
-            </div>
-
-            <!-- Botão Concluir Pedido -->
-            <button type="submit" :disabled="isSubmitting" class="w-full bg-botanic-700 hover:bg-botanic-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg flex items-center justify-center space-x-2">
-              <i class="fa-solid fa-paper-plane" x-show="!isSubmitting"></i>
-              <span x-text="isSubmitting ? 'Enviando Pedido...' : 'Confirmar e Finalizar Pedido'"></span>
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- 📱 MENU MOBILE OVERLAY -->
-  <div x-show="mobileMenuOpen" class="fixed inset-0 z-50 flex md:hidden">
-    <div x-show="mobileMenuOpen" x-transition.opacity @click="mobileMenuOpen = false" class="fixed inset-0 bg-black/50"></div>
-    <div class="relative bg-sand-50 w-4/5 max-w-sm h-full shadow-2xl p-6 flex flex-col justify-between z-10">
-      <div>
-        <div class="flex justify-between items-center mb-8 border-b border-sand-200 pb-4">
-          <span class="font-serif text-2xl font-bold text-botanic-800">Farmaura</span>
-          <button @click="mobileMenuOpen = false" class="text-gray-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <nav class="flex flex-col space-y-4 text-sm font-semibold uppercase tracking-wider">
-          <a href="#produtos" @click="activeCategory = 'todos'; mobileMenuOpen = false" class="text-botanic-900">Todos os Produtos</a>
-          <a href="#produtos" @click="activeCategory = 'corpo'; mobileMenuOpen = false" class="text-botanic-900">Corpo & Banho</a>
-          <a href="#manifesto" @click="mobileMenuOpen = false" class="text-botanic-900">Nossa Filosofia</a>
-          <a href="#contato" @click="mobileMenuOpen = false" class="text-botanic-900">Contato</a>
-        </nav>
-      </div>
-      <div class="border-t border-sand-200 pt-4 text-xs text-gray-500">
-        <p><i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> (16) 99111-0781</p>
-        <p class="mt-1"><i class="fa-regular fa-envelope mr-1"></i> farmaurainc@gmail.com</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🦶 RODAPÉ (FOOTER) -->
-  <footer class="bg-botanic-900 text-sand-200 text-xs py-12 border-t border-botanic-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="font-serif text-2xl font-bold text-sand-50 mb-3">Farmaura</h3>
-        <p class="text-sand-300 leading-relaxed font-light">
-          Cosméticos naturais, veganos e artesanais desenvolvidos para cuidar da sua pele e bem-estar.
-        </p>
-      </div>
-      <div>
-        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Navegação</h4>
-        <ul class="space-y-2 font-light">
-          <li><a href="#produtos" class="hover:text-white transition">Produtos</a></li>
-          <li><a href="#manifesto" class="hover:text-white transition">Nossa Filosofia</a></li>
-          <li><a href="#contato" class="hover:text-white transition">Contato</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Atendimento</h4>
-        <p class="font-light mb-1">Segunda a Sexta: 08h às 18h</p>
-        <p class="font-light"><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> (16) 99111-0781</p>
-        <p class="font-light"><i class="fa-regular fa-envelope mr-1"></i> farmaurainc@gmail.com</p>
-      </div>
-      <div>
-        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Pagamento Seguro</h4>
-        <div class="flex space-x-3 text-2xl text-sand-300">
-          <i class="fa-brands fa-cc-visa"></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-solid fa-pix"></i>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-botanic-800 text-center text-sand-400 font-light">
-      &copy; 2026 Farmaura Natural. Todos os direitos reservados.
-    </div>
-  </footer>
-
-  <!-- ⚙️ SCRIPT ALPINE.JS -->
-  <script>
-    function shopApp() {
-      return {
-        activeCategory: 'todos',
-        cartOpen: false,
-        checkoutModalOpen: false,
-        mobileMenuOpen: false,
-        couponCode: '',
-        discountApplied: false,
-        isSubmitting: false,
-        toast: { show: false, message: '' },
-        customer: {
-          name: '', email: '', phone: '', cpf: '',
-          cep: '', street: '', number: '', complement: '',
-          neighborhood: '', city: '', state: '', payment: 'pix'
-        },
-        products: [
-          {
-            id: 1,
-            title: 'WAYFARER - Sabonete Corporal em Pó (Chá Verde)',
-            sub: 'Limpa • Hidrata • Protege — Kit com 5 sachês de 10g cada (50g no total) • Ideal para viagens e expedições',
-            price: 67.42,
-            category: 'corpo',
-            badge: 'Exclusivo',
-            image: 'wayfarer-ziplock.png'
-          },
-          {
-            id: 2,
-            title: 'WAYFARER REFILL - Sabonete Corporal em Pó (Chá Verde)',
-            sub: 'Refil econômico e ecológico para reabastecer seu Wayfarer • 100g',
-            price: 99.90,
-            category: 'corpo',
-            badge: 'Refill',
-            image: 'wayfarer-refill.svg'
-          }
-        ],
-        cart: [],
-
-        filteredProducts() {
-          if (this.activeCategory === 'todos') return this.products;
-          return this.products.filter(p => p.category === this.activeCategory);
-        },
-
-        addToCart(product) {
-          const index = this.cart.findIndex(i => i.id === product.id);
-          if (index > -1) {
-            this.cart[index].qty++;
-          } else {
-            this.cart.push({ ...product, qty: 1 });
-          }
-          this.showToast(`"${product.title}" adicionado ao carrinho!`);
-        },
-
-        removeFromCart(index) {
-          this.cart.splice(index, 1);
-        },
-
-        updateQty(index, change) {
-          this.cart[index].qty += change;
-          if (this.cart[index].qty <= 0) {
-            this.removeFromCart(index);
-          }
-        },
-
-        cartTotalCount() {
-          return this.cart.reduce((sum, item) => sum + item.qty, 0);
-        },
-
-        cartSubtotal() {
-          return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-        },
-
-        freeShippingRemaining() {
-          return Math.max(0, 199 - this.cartSubtotal());
-        },
-
-        applyCoupon() {
-          if (this.couponCode.trim().toUpperCase() === 'FARMAURA10') {
-            this.discountApplied = true;
-            this.showToast('Cupom FARMAURA10 aplicado com sucesso!');
-          } else {
-            alert('Cupom inválido! Utilize FARMAURA10 para 10% OFF.');
-          }
-        },
-
-        cartTotalWithDiscounts() {
-          let total = this.cartSubtotal();
-          if (this.discountApplied) total *= 0.9;
-          return total;
-        },
-
-        openCheckoutModal() {
-          this.cartOpen = false;
-          this.checkoutModalOpen = true;
-        },
-
-        showToast(msg) {
-          this.toast.message = msg;
-          this.toast.show = true;
-          setTimeout(() => { this.toast.show = false; }, 4000);
-        },
-
-        formatMoney(val) {
-          return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
-        },
-
-        async submitOrder() {
-          if (this.cart.length === 0) {
-            alert('Seu carrinho está vazio!');
-            return;
-          }
-
-          this.isSubmitting = true;
-
-          const itemsSummary = this.cart.map(i => `${i.qty}x ${i.title} (${this.formatMoney(i.price * i.qty)})`).join('\n');
-          const finalTotal = this.customer.payment === 'pix' ? this.cartTotalWithDiscounts() * 0.97 : this.cartTotalWithDiscounts();
-
-          const formData = {
-            Cliente_Nome: this.customer.name,
-            Cliente_Email: this.customer.email,
-            Cliente_Telefone: this.customer.phone,
-            Cliente_CPF: this.customer.cpf || 'Não informado',
-            Endereco_Entrega: `${this.customer.street}, ${this.customer.number} - ${this.customer.complement || ''}, Bairro: ${this.customer.neighborhood}, Cidade: ${this.customer.city}/${this.customer.state} - CEP: ${this.customer.cep}`,
-            Forma_Pagamento: this.customer.payment.toUpperCase(),
-            Itens_Pedido: itemsSummary,
-            Subtotal: this.formatMoney(this.cartSubtotal()),
-            Cupom_Aplicado: this.discountApplied ? 'FARMAURA10 (10% OFF)' : 'Nenhum',
-            Total_Final: this.formatMoney(finalTotal)
-          };
-
-          try {
-            const response = await fetch('https://formspree.io/f/xaeqegev', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-              this.checkoutModalOpen = false;
-              this.cart = [];
-              this.discountApplied = false;
-              alert('🎉 Pedido realizado com sucesso! Enviamos a confirmação para o seu e-mail.');
-            } else {
-              alert('Houve um problema ao enviar seu pedido. Por favor, tente novamente.');
-            }
-          } catch (error) {
-            console.error('Erro no checkout:', error);
-            alert('Erro de conexão ao processar o pedido.');
-          } finally {
-            this.isSubmitting = false;
-          }
-        }
-      }
-    }
-  </script>
-</body>
-</html>
+                <i class
