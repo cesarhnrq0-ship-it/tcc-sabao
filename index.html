@@ -105,7 +105,7 @@
         <!-- BARRA DE BUSCA -->
         <div class="hidden md:flex flex-1 max-w-md mx-8">
           <div class="relative w-full">
-            <input type="text" placeholder="Buscar desodorante, hidratante, óleos..." 
+            <input type="text" placeholder="Buscar sabonete em pó, produtos..." 
                    class="w-full bg-sand-100 border border-sand-300 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-botanic-500 transition" />
             <button class="absolute right-3 top-2.5 text-botanic-500">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -137,9 +137,7 @@
       <nav class="hidden md:flex justify-center space-x-8 py-3 border-t border-sand-200/60 text-xs font-semibold uppercase tracking-wider">
         <a href="#produtos" @click="activeCategory = 'todos'" class="hover:text-terracotta-500 transition">Todos os Produtos</a>
         <a href="#produtos" @click="activeCategory = 'corpo'" class="hover:text-terracotta-500 transition">Corpo & Banho</a>
-        <a href="#produtos" @click="activeCategory = 'skincare'" class="hover:text-terracotta-500 transition">Skincare Faciais</a>
-        <a href="#produtos" @click="activeCategory = 'aromaterapia'" class="hover:text-terracotta-500 transition">Aromaterapia</a>
-        <a href="#produtos" @click="activeCategory = 'kits'" class="text-terracotta-500 font-bold hover:underline">Kits & Presentes</a>
+        <a href="#manifesto" class="hover:text-terracotta-500 transition">Nossa Filosofia</a>
         <a href="#contato" class="hover:text-terracotta-500 transition">Contato</a>
       </nav>
     </div>
@@ -151,13 +149,13 @@
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between">
       <div class="md:w-1/2 space-y-6">
         <span class="bg-botanic-700/80 text-sand-100 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-botanic-500/30">100% Vegano & Artesanal</span>
-        <h1 class="font-serif text-4xl md:text-6xl leading-tight">O poder dos óleos essenciais na sua pele.</h1>
+        <h1 class="font-serif text-4xl md:text-6xl leading-tight">Inovação natural para a sua rotina.</h1>
         <p class="text-sand-200 text-sm md:text-base max-w-lg font-light leading-relaxed">
-          Cosméticos botânicos desenvolvidos para nutrir seu corpo e acalmar sua mente, livres de alumínio, parabenos e fragrâncias sintéticas.
+          Conheça o Wayfarer: Sabonete corporal em pó com extrato de Chá Verde. Prático, ecológico e ideal para o seu dia a dia e expedições.
         </p>
         <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
           <a href="#produtos" class="w-full sm:w-auto bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-sm text-center">
-            Explorar Coleção
+            Comprar Agora
           </a>
           <a href="#manifesto" class="w-full sm:w-auto border border-sand-300/40 hover:bg-sand-50/10 text-sand-100 font-medium px-6 py-3.5 rounded-full transition text-sm text-center">
             Nossa Filosofia
@@ -166,11 +164,11 @@
       </div>
       <div class="md:w-5/12 mt-12 md:mt-0">
         <div class="relative bg-sand-100/10 backdrop-blur-md p-4 rounded-2xl border border-sand-100/20 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=800&q=80" alt="Kit Ritual Farmaura" class="rounded-xl object-cover h-80 w-full">
+          <img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=800&q=80" alt="Wayfarer Sabonete Corporal em Pó" class="rounded-xl object-cover h-80 w-full">
           <div class="absolute -bottom-4 -left-4 bg-sand-50 text-botanic-900 p-4 rounded-xl shadow-lg border border-sand-200 text-xs max-w-xs">
-            <p class="font-bold text-sm">Kit Ritual Natural Farmaura</p>
-            <p class="text-gray-500 mt-0.5">Sabonete + Desodorante Spray + Hidratante</p>
-            <span class="text-terracotta-500 font-bold mt-1 block">R$ 239,13 <span class="line-through text-gray-400 font-normal">R$ 272,70</span></span>
+            <p class="font-bold text-sm">Wayfarer - Sabonete Corporal em Pó</p>
+            <p class="text-gray-500 mt-0.5">Chá Verde • Ideal para viagens e expedições • 100g</p>
+            <span class="text-terracotta-500 font-bold mt-1 block">R$ 67,42</span>
           </div>
         </div>
       </div>
@@ -207,37 +205,18 @@
   <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-sand-200 pb-4">
       <div>
-        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Nossos Queridinhos</span>
-        <h2 class="font-serif text-3xl md:text-4xl text-botanic-900 mt-1">Conheça nossos produtos artesanais</h2>
-      </div>
-      
-      <!-- Filtros de Categorias -->
-      <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
-        <button @click="activeCategory = 'todos'" 
-                :class="activeCategory === 'todos' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
-                class="px-4 py-2 rounded-full text-xs font-semibold transition">Todos</button>
-        <button @click="activeCategory = 'corpo'" 
-                :class="activeCategory === 'corpo' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
-                class="px-4 py-2 rounded-full text-xs font-semibold transition">Corpo & Desodorantes</button>
-        <button @click="activeCategory = 'skincare'" 
-                :class="activeCategory === 'skincare' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
-                class="px-4 py-2 rounded-full text-xs font-semibold transition">Skincare</button>
-        <button @click="activeCategory = 'aromaterapia'" 
-                :class="activeCategory === 'aromaterapia' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
-                class="px-4 py-2 rounded-full text-xs font-semibold transition">Aromaterapia</button>
-        <button @click="activeCategory = 'kits'" 
-                :class="activeCategory === 'kits' ? 'bg-botanic-700 text-white' : 'bg-sand-200 text-botanic-800 hover:bg-sand-300'"
-                class="px-4 py-2 rounded-full text-xs font-semibold transition">Kits</button>
+        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Lançamento Exclusivo</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-botanic-900 mt-1">Conheça nosso produto artesanal</h2>
       </div>
     </div>
 
     <!-- Grid de Cards de Produtos -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
       <template x-for="product in filteredProducts()" :key="product.id">
         <div class="group bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           
           <!-- Imagem e Badges -->
-          <div class="relative bg-sand-100 overflow-hidden h-64">
+          <div class="relative bg-sand-100 overflow-hidden h-72">
             <template x-if="product.badge">
               <span class="absolute top-3 left-3 z-10 bg-terracotta-500 text-white font-bold text-[10px] uppercase px-2.5 py-1 rounded-full shadow" x-text="product.badge"></span>
             </template>
@@ -256,18 +235,15 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
-                <span class="text-gray-400 font-normal ml-1">(4.9)</span>
+                <span class="text-gray-400 font-normal ml-1">(5.0)</span>
               </div>
-              <h3 class="font-bold text-sm text-botanic-900 group-hover:text-botanic-500 transition leading-snug" x-text="product.title"></h3>
-              <p class="text-xs text-gray-500 mt-1 font-light" x-text="product.sub"></p>
+              <h3 class="font-bold text-base text-botanic-900 group-hover:text-botanic-500 transition leading-snug" x-text="product.title"></h3>
+              <p class="text-xs text-gray-500 mt-1 font-light leading-relaxed" x-text="product.sub"></p>
             </div>
 
             <div class="mt-4 pt-3 border-t border-sand-100">
               <div class="flex items-baseline space-x-2">
-                <span class="text-lg font-extrabold text-botanic-900" x-text="formatMoney(product.price)"></span>
-                <template x-if="product.oldPrice">
-                  <span class="text-xs text-gray-400 line-through" x-text="formatMoney(product.oldPrice)"></span>
-                </template>
+                <span class="text-xl font-extrabold text-botanic-900" x-text="formatMoney(product.price)"></span>
               </div>
               <p class="text-[11px] text-emerald-700 font-medium">
                 <span x-text="formatMoney(product.price * 0.97)"></span> no PIX (3% OFF)
@@ -275,7 +251,7 @@
 
               <!-- Botão Adicionar -->
               <button @click="addToCart(product)" 
-                      class="mt-4 w-full bg-botanic-700 hover:bg-botanic-800 text-sand-50 font-semibold text-xs py-2.5 rounded-xl transition flex items-center justify-center space-x-2">
+                      class="mt-4 w-full bg-botanic-700 hover:bg-botanic-800 text-sand-50 font-semibold text-xs py-3 rounded-xl transition flex items-center justify-center space-x-2">
                 <i class="fa-solid fa-plus text-xs"></i>
                 <span>Adicionar ao Carrinho</span>
               </button>
@@ -297,12 +273,12 @@
           A Farmaura nasceu do desejo de reconectar a rotina diária de cuidados com os ritmos da natureza. Acreditamos que você não precisa comprometer sua saúde ou o meio ambiente para ter resultados incríveis.
         </p>
         <p class="text-gray-600 text-sm leading-relaxed mb-6">
-          Todas as nossas fórmulas são artesanais, ricas em extratos botânicos e óleos essenciais puros, que além de tratarem a pele, trazem os benefícios terapêuticos da aromaterapia.
+          Nossas fórmulas são artesanais e ecológicas, ricas em extratos botânicos e pensadas para proporcionar a máxima eficiência com o menor impacto ambiental.
         </p>
         <div class="grid grid-cols-2 gap-4 pt-2">
           <div class="border-l-2 border-terracotta-500 pl-4">
             <span class="font-serif text-2xl font-bold text-botanic-800">100%</span>
-            <p class="text-xs text-gray-500">Livre de alumínio e parabenos</p>
+            <p class="text-xs text-gray-500">Biodegradável e sustentável</p>
           </div>
           <div class="border-l-2 border-botanic-500 pl-4">
             <span class="font-serif text-2xl font-bold text-botanic-800">Cruelty-Free</span>
@@ -312,7 +288,7 @@
       </div>
       <div class="grid grid-cols-2 gap-4">
         <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
-        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sérum e Hidratante">
+        <img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sabonete Natural">
       </div>
     </div>
   </section>
@@ -627,9 +603,7 @@
         <nav class="flex flex-col space-y-4 text-sm font-semibold uppercase tracking-wider">
           <a href="#produtos" @click="activeCategory = 'todos'; mobileMenuOpen = false" class="text-botanic-900">Todos os Produtos</a>
           <a href="#produtos" @click="activeCategory = 'corpo'; mobileMenuOpen = false" class="text-botanic-900">Corpo & Banho</a>
-          <a href="#produtos" @click="activeCategory = 'skincare'; mobileMenuOpen = false" class="text-botanic-900">Skincare Faciais</a>
-          <a href="#produtos" @click="activeCategory = 'aromaterapia'; mobileMenuOpen = false" class="text-botanic-900">Aromaterapia</a>
-          <a href="#produtos" @click="activeCategory = 'kits'; mobileMenuOpen = false" class="text-terracotta-500">Kits & Presentes</a>
+          <a href="#manifesto" @click="mobileMenuOpen = false" class="text-botanic-900">Nossa Filosofia</a>
           <a href="#contato" @click="mobileMenuOpen = false" class="text-botanic-900">Contato</a>
         </nav>
       </div>
@@ -697,49 +671,12 @@
         products: [
           {
             id: 1,
-            title: 'Desodorante Natural Spray Lavanda & Melaleuca',
-            sub: 'Livre de alumínio e parabenos • 100ml',
-            price: 38.90,
-            oldPrice: 45.00,
+            title: 'WAYFARER - Sabonete Corporal em Pó (Chá Verde)',
+            sub: 'Limpa • Hidrata • Protege — Ideal para viagens e expedições • 100g',
+            price: 67.42,
             category: 'corpo',
-            badge: 'Mais Vendido',
-            image: 'https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            id: 2,
-            title: 'Sérum Facial Hidratante de Rosa Mosqueta',
-            sub: 'Nutrição profunda e regeneração celular • 30ml',
-            price: 64.90,
-            category: 'skincare',
-            badge: 'Novo',
-            image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            id: 3,
-            title: 'Wayfarer - Sabonete Corporal em Pó Chá Verde',
-            sub: 'Limpa, hidrata e protege • Ideal para viagens e expedições • 100g',
-            price: 66.42,
-            category: 'corpo',
-            badge: 'Novo',
+            badge: 'Exclusivo',
             image: 'https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            id: 4,
-            title: 'Óleo Essencial Terapêutico de Gerânio',
-            sub: 'Aromaterapia para equilíbrio emocional • 10ml',
-            price: 49.90,
-            category: 'aromaterapia',
-            image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            id: 5,
-            title: 'Kit Ritual Farmaura (Sabonete + Desodorante + Sérum)',
-            sub: 'Combo completo de autocuidado natural',
-            price: 118.00,
-            oldPrice: 128.70,
-            category: 'kits',
-            badge: 'Oferta Especial',
-            image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
           }
         ],
         cart: [],
