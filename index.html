@@ -1,3 +1,8 @@
+Aqui está o código completo do arquivo index.html.
+
+Você só precisa substituir todo o conteúdo do seu arquivo no GitHub por este código abaixo, salvar (Commit changes) e aguardar 1 minuto.
+
+HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -48,7 +53,7 @@
     }
   </script>
 
-  <!-- Alpine.js (para interatividade reativa) -->
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <style>
@@ -139,8 +144,8 @@
         <a href="#produtos" @click="activeCategory = 'corpo'" class="hover:text-terracotta-500 transition">Corpo & Banho</a>
         <a href="#produtos" @click="activeCategory = 'skincare'" class="hover:text-terracotta-500 transition">Skincare Faciais</a>
         <a href="#produtos" @click="activeCategory = 'aromaterapia'" class="hover:text-terracotta-500 transition">Aromaterapia</a>
-        <a href="#produtos" @click="activeCategory = 'intimo'" class="hover:text-terracotta-500 transition">Linha Íntima</a>
         <a href="#produtos" @click="activeCategory = 'kits'" class="text-terracotta-500 font-bold hover:underline">Kits & Presentes</a>
+        <a href="#contato" class="hover:text-terracotta-500 transition">Contato</a>
       </nav>
     </div>
   </header>
@@ -314,6 +319,33 @@
         <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
         <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sérum e Hidratante">
       </div>
+    </div>
+  </section>
+
+  <!-- ✉️ SEÇÃO DE CONTATO (FORMSPREE DIRETO) -->
+  <section id="contato" class="py-16 bg-sand-50 border-b border-sand-200">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Atendimento</span>
+      <h2 class="font-serif text-3xl font-semibold text-botanic-900 mt-1 mb-2">Fale Conosco</h2>
+      <p class="text-xs md:text-sm text-gray-600 mb-8">Envie suas dúvidas, sugestões ou entre em contato direto com a nossa equipe.</p>
+
+      <form action="https://formspree.io/f/xaeqegev" method="POST" class="bg-white p-6 sm:p-8 rounded-2xl border border-sand-200 shadow-sm text-left space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu Nome *</label>
+          <input type="text" name="nome" required placeholder="Digite seu nome completo" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Seu E-mail *</label>
+          <input type="email" name="email" required placeholder="seuemail@empresa.com" class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Mensagem *</label>
+          <textarea name="mensagem" rows="4" required placeholder="Escreva sua mensagem aqui..." class="w-full bg-sand-50 border border-sand-300 rounded-lg p-3 text-xs focus:ring-2 focus:ring-botanic-500 focus:outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-botanic-700 hover:bg-botanic-800 text-white font-bold py-3 rounded-xl text-xs transition shadow-md">
+          Enviar Mensagem
+        </button>
+      </form>
     </div>
   </section>
 
@@ -537,71 +569,50 @@
             <!-- 3. Forma de Pagamento -->
             <div>
               <h4 class="text-xs font-bold uppercase tracking-wider text-botanic-800 border-b border-sand-200 pb-2 mb-3 flex items-center">
-                <i class="fa-solid fa-wallet mr-2 text-terracotta-500"></i> Forma de Pagamento
+                <i class="fa-solid fa-credit-card mr-2 text-terracotta-500"></i> Forma de Pagamento
               </h4>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <label class="border p-3 rounded-xl flex items-center space-x-3 cursor-pointer transition hover:bg-sand-100"
-                       :class="customer.paymentMethod === 'PIX' ? 'border-botanic-700 bg-botanic-50 ring-2 ring-botanic-700' : 'border-sand-300'">
-                  <input type="radio" name="payment" value="PIX" x-model="customer.paymentMethod" class="text-botanic-700">
-                  <div class="text-xs">
-                    <p class="font-bold text-botanic-900">PIX (3% OFF)</p>
-                    <p class="text-[10px] text-emerald-700 font-semibold">Aprovação imediata</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="border border-sand-300 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-botanic-500 transition bg-sand-50">
+                  <input type="radio" name="paymentMethod" value="pix" x-model="customer.payment" checked class="text-botanic-700 focus:ring-botanic-500">
+                  <div>
+                    <span class="block text-xs font-bold text-botanic-900">PIX (3% de Desconto)</span>
+                    <span class="block text-[10px] text-emerald-700">Aprovação imediata</span>
                   </div>
                 </label>
 
-                <label class="border p-3 rounded-xl flex items-center space-x-3 cursor-pointer transition hover:bg-sand-100"
-                       :class="customer.paymentMethod === 'Cartão de Crédito' ? 'border-botanic-700 bg-botanic-50 ring-2 ring-botanic-700' : 'border-sand-300'">
-                  <input type="radio" name="payment" value="Cartão de Crédito" x-model="customer.paymentMethod" class="text-botanic-700">
-                  <div class="text-xs">
-                    <p class="font-bold text-botanic-900">Cartão de Crédito</p>
-                    <p class="text-[10px] text-gray-500">Até 3x sem juros</p>
-                  </div>
-                </label>
-
-                <label class="border p-3 rounded-xl flex items-center space-x-3 cursor-pointer transition hover:bg-sand-100"
-                       :class="customer.paymentMethod === 'Boleto' ? 'border-botanic-700 bg-botanic-50 ring-2 ring-botanic-700' : 'border-sand-300'">
-                  <input type="radio" name="payment" value="Boleto" x-model="customer.paymentMethod" class="text-botanic-700">
-                  <div class="text-xs">
-                    <p class="font-bold text-botanic-900">Boleto Bancário</p>
-                    <p class="text-[10px] text-gray-500">Vencimento em 2 dias</p>
+                <label class="border border-sand-300 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-botanic-500 transition bg-sand-50">
+                  <input type="radio" name="paymentMethod" value="cartao" x-model="customer.payment" class="text-botanic-700 focus:ring-botanic-500">
+                  <div>
+                    <span class="block text-xs font-bold text-botanic-900">Cartão de Crédito</span>
+                    <span class="block text-[10px] text-gray-500">Parcele em até 3x sem juros</span>
                   </div>
                 </label>
               </div>
             </div>
 
-            <!-- Resumo Financeiro Curto -->
-            <div class="bg-sand-100 p-4 rounded-xl text-xs space-y-1">
-              <div class="flex justify-between font-medium text-gray-600">
-                <span>Itens:</span>
-                <span x-text="`${cartTotalCount()} produtos`"></span>
+            <!-- Resumo do Valor do Pedido -->
+            <div class="bg-sand-100 p-4 rounded-xl space-y-2 border border-sand-200">
+              <div class="flex justify-between text-xs text-gray-600">
+                <span>Subtotal dos Produtos:</span>
+                <span x-text="formatMoney(cartSubtotal())"></span>
               </div>
-              <div class="flex justify-between font-medium text-gray-600">
-                <span>Total a Pagar:</span>
-                <span class="font-bold text-botanic-900 text-sm" 
-                      x-text="formatMoney(customer.paymentMethod === 'PIX' ? cartTotalWithDiscounts() * 0.97 : cartTotalWithDiscounts())"></span>
+              <template x-if="discountApplied">
+                <div class="flex justify-between text-xs text-emerald-700 font-semibold">
+                  <span>Cupom (FARMAURA10):</span>
+                  <span x-text="`- ${formatMoney(cartSubtotal() * 0.1)}`"></span>
+                </div>
+              </template>
+              <div class="flex justify-between text-sm font-bold text-botanic-900 pt-2 border-t border-sand-300">
+                <span>Total Final:</span>
+                <span class="text-base text-terracotta-500" x-text="formatMoney(customer.payment === 'pix' ? cartTotalWithDiscounts() * 0.97 : cartTotalWithDiscounts())"></span>
               </div>
             </div>
 
-            <!-- Botão de Envio -->
-            <div class="pt-2">
-              <button type="submit" 
-                      :disabled="isSubmitting"
-                      class="w-full bg-terracotta-500 hover:bg-terracotta-600 disabled:opacity-50 text-white font-bold py-4 rounded-xl text-sm transition shadow-lg flex items-center justify-center space-x-2">
-                <template x-if="!isSubmitting">
-                  <span class="flex items-center space-x-2">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>Confirmar Pedido e Enviar para Farmaura</span>
-                  </span>
-                </template>
-                <template x-if="isSubmitting">
-                  <span class="flex items-center space-x-2">
-                    <i class="fa-solid fa-circle-notch fa-spin"></i>
-                    <span>Processando e enviando e-mail...</span>
-                  </span>
-                </template>
-              </button>
-            </div>
-
+            <!-- Botão Concluir Pedido -->
+            <button type="submit" :disabled="isSubmitting" class="w-full bg-botanic-700 hover:bg-botanic-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-paper-plane" x-show="!isSubmitting"></i>
+              <span x-text="isSubmitting ? 'Enviando Pedido...' : 'Confirmar e Finalizar Pedido'"></span>
+            </button>
           </form>
         </div>
 
@@ -609,198 +620,133 @@
     </div>
   </div>
 
-  <!-- 🎉 MODAL DE SUCESSO -->
-  <div x-show="orderSuccessModalOpen" class="relative z-50">
-    <div x-show="orderSuccessModalOpen" x-transition.opacity class="fixed inset-0 bg-black/60 backdrop-blur-xs"></div>
-
-    <div class="fixed inset-0 z-10 overflow-y-auto p-4 flex items-center justify-center">
-      <div x-show="orderSuccessModalOpen" x-transition
-           class="bg-white w-full max-w-lg rounded-2xl shadow-2xl p-8 text-center border border-sand-300">
-        
-        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-          <i class="fa-solid fa-check"></i>
+  <!-- 📱 MENU MOBILE OVERLAY -->
+  <div x-show="mobileMenuOpen" class="fixed inset-0 z-50 flex md:hidden">
+    <div x-show="mobileMenuOpen" x-transition.opacity @click="mobileMenuOpen = false" class="fixed inset-0 bg-black/50"></div>
+    <div class="relative bg-sand-50 w-4/5 max-w-sm h-full shadow-2xl p-6 flex flex-col justify-between z-10">
+      <div>
+        <div class="flex justify-between items-center mb-8 border-b border-sand-200 pb-4">
+          <span class="font-serif text-2xl font-bold text-botanic-800">Farmaura</span>
+          <button @click="mobileMenuOpen = false" class="text-gray-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
-        <h3 class="font-serif text-2xl font-bold text-botanic-900">Pedido Enviado com Sucesso!</h3>
-        <p class="text-xs text-gray-600 mt-2 leading-relaxed">
-          Os detalhes do seu pedido e seus dados foram enviados com sucesso para o e-mail <strong>Farmaurainc@gmail.com</strong>.
-        </p>
-
-        <div class="bg-sand-100 p-4 rounded-xl text-left text-xs mt-6 space-y-2 border border-sand-200">
-          <p><strong>Cliente:</strong> <span x-text="customer.name"></span></p>
-          <p><strong>E-mail:</strong> <span x-text="customer.email"></span></p>
-          <p><strong>Forma de Pagamento:</strong> <span x-text="customer.paymentMethod"></span></p>
-          <p class="text-emerald-700 font-bold pt-1 border-t border-sand-200">
-            Nossa equipe entrará em contato em breve pelo WhatsApp/E-mail para confirmar a entrega!
-          </p>
-        </div>
-
-        <button @click="finishProcess()" class="mt-6 w-full bg-botanic-800 hover:bg-botanic-900 text-white font-bold py-3 rounded-xl text-xs transition">
-          Voltar para a Loja
-        </button>
-
+        <nav class="flex flex-col space-y-4 text-sm font-semibold uppercase tracking-wider">
+          <a href="#produtos" @click="activeCategory = 'todos'; mobileMenuOpen = false" class="text-botanic-900">Todos os Produtos</a>
+          <a href="#produtos" @click="activeCategory = 'corpo'; mobileMenuOpen = false" class="text-botanic-900">Corpo & Banho</a>
+          <a href="#produtos" @click="activeCategory = 'skincare'; mobileMenuOpen = false" class="text-botanic-900">Skincare Faciais</a>
+          <a href="#produtos" @click="activeCategory = 'aromaterapia'; mobileMenuOpen = false" class="text-botanic-900">Aromaterapia</a>
+          <a href="#produtos" @click="activeCategory = 'kits'; mobileMenuOpen = false" class="text-terracotta-500">Kits & Presentes</a>
+          <a href="#contato" @click="mobileMenuOpen = false" class="text-botanic-900">Contato</a>
+        </nav>
+      </div>
+      <div class="border-t border-sand-200 pt-4 text-xs text-gray-500">
+        <p><i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> (16) 99111-0781</p>
+        <p class="mt-1"><i class="fa-regular fa-envelope mr-1"></i> farmaurainc@gmail.com</p>
       </div>
     </div>
   </div>
 
-  <!-- 🦶 FOOTER -->
-  <footer class="bg-sand-200 text-botanic-900 pt-16 pb-8 border-t border-sand-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+  <!-- 🦶 RODAPÉ (FOOTER) -->
+  <footer class="bg-botanic-900 text-sand-200 text-xs py-12 border-t border-botanic-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <span class="font-serif text-2xl font-bold text-botanic-800">Farmaura</span>
-        <p class="text-xs text-gray-600 mt-3 leading-relaxed">
-          Cosméticos naturais, veganos e artesanais. O cuidado que sua pele merece com o afeto que a natureza oferece.
+        <h3 class="font-serif text-2xl font-bold text-sand-50 mb-3">Farmaura</h3>
+        <p class="text-sand-300 leading-relaxed font-light">
+          Cosméticos naturais, veganos e artesanais desenvolvidos para cuidar da sua pele e bem-estar.
         </p>
-        <div class="flex space-x-4 mt-4 text-botanic-700 text-lg">
-          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="hover:text-terracotta-500"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
       </div>
-
       <div>
-        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Navegação</h4>
-        <ul class="space-y-2 text-xs text-gray-600">
-          <li><a href="#" class="hover:underline">Desodorantes Spray</a></li>
-          <li><a href="#" class="hover:underline">Hidratantes Corporais</a></li>
-          <li><a href="#" class="hover:underline">Sabonetes Faciais & Argilas</a></li>
-          <li><a href="#" class="hover:underline">Aromaterapia</a></li>
-          <li><a href="#" class="hover:underline">Kits Presente</a></li>
+        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Navegação</h4>
+        <ul class="space-y-2 font-light">
+          <li><a href="#produtos" class="hover:text-white transition">Produtos</a></li>
+          <li><a href="#manifesto" class="hover:text-white transition">Nossa Filosofia</a></li>
+          <li><a href="#contato" class="hover:text-white transition">Contato</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Atendimento</h4>
-        <ul class="space-y-2 text-xs text-gray-600">
-          <li>Central de Atendimento</li>
-          <li>WhatsApp: (16) 99111-0781</li>
-          <li>E-mail: farmaurainc@gmail.com</li>
-          <li>Segunda a Sexta das 9h às 18h</li>
-        </ul>
+        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Atendimento</h4>
+        <p class="font-light mb-1">Segunda a Sexta: 08h às 18h</p>
+        <p class="font-light"><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> (16) 99111-0781</p>
+        <p class="font-light"><i class="fa-regular fa-envelope mr-1"></i> farmaurainc@gmail.com</p>
       </div>
-
       <div>
-        <h4 class="font-bold text-xs uppercase tracking-wider mb-4 text-botanic-800">Pagamento & Segurança</h4>
-        <div class="flex flex-wrap gap-2 text-2xl text-gray-600">
-          <i class="fa-brands fa-pix text-emerald-600"></i>
+        <h4 class="font-bold text-sand-50 uppercase tracking-wider mb-3">Pagamento Seguro</h4>
+        <div class="flex space-x-3 text-2xl text-sand-300">
           <i class="fa-brands fa-cc-visa"></i>
           <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-brands fa-cc-apple-pay"></i>
+          <i class="fa-solid fa-pix"></i>
         </div>
-        <span class="block text-[11px] text-gray-500 mt-3"><i class="fa-solid fa-lock"></i> Ambiente 100% Criptografado</span>
       </div>
     </div>
-
-    <div class="text-center text-xs text-gray-500 pt-8 border-t border-sand-300">
-      <p>© 2026 Farmaura. Todos os direitos reservados. Projeto compatível para publicação via GitHub Pages.</p>
+    <div class="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-botanic-800 text-center text-sand-400 font-light">
+      &copy; 2026 Farmaura Natural. Todos os direitos reservados.
     </div>
   </footer>
 
-  <!-- ⚙️ SCRIPT DE LÓGICA DO SHOP (Alpine.js) -->
+  <!-- ⚙️ SCRIPT ALPINE.JS -->
   <script>
     function shopApp() {
       return {
+        activeCategory: 'todos',
         cartOpen: false,
         checkoutModalOpen: false,
-        orderSuccessModalOpen: false,
         mobileMenuOpen: false,
-        isSubmitting: false,
-        activeCategory: 'todos',
         couponCode: '',
         discountApplied: false,
+        isSubmitting: false,
         toast: { show: false, message: '' },
-        cart: [],
-
-        // DADOS DO CLIENTE PARA O CHECKOUT
         customer: {
-          name: '',
-          email: '',
-          phone: '',
-          cpf: '',
-          cep: '',
-          street: '',
-          number: '',
-          complement: '',
-          neighborhood: '',
-          city: '',
-          state: '',
-          paymentMethod: 'PIX'
+          name: '', email: '', phone: '', cpf: '',
+          cep: '', street: '', number: '', complement: '',
+          neighborhood: '', city: '', state: '', payment: 'pix'
         },
-        
-        // BASE DE DADOS DOS PRODUTOS DA FARMAURA
         products: [
           {
             id: 1,
-            title: "Desodorante Natural em Spray",
-            sub: "Tangerina, Litsea Cubeba e Cumaru (50 ml)",
-            price: 48.90,
-            oldPrice: 51.50,
-            badge: "Mais Vendido",
-            category: "corpo",
-            image: "https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=600&q=80"
+            title: 'Desodorante Natural Spray Lavanda & Melaleuca',
+            sub: 'Livre de alumínio e parabenos • 100ml',
+            price: 38.90,
+            oldPrice: 45.00,
+            category: 'corpo',
+            badge: 'Mais Vendido',
+            image: 'https://images.unsplash.com/photo-1608248597309-a1d2797e5989?auto=format&fit=crop&w=600&q=80'
           },
           {
             id: 2,
-            title: "Hidratante Natural Corporal",
-            sub: "Tangerina, Litsea Cubeba e Cumaru (200 ml)",
-            price: 109.90,
-            badge: "Lançamento",
-            category: "corpo",
-            image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
+            title: 'Sérum Facial Hidratante de Rosa Mosqueta',
+            sub: 'Nutrição profunda e regeneração celular • 30ml',
+            price: 64.90,
+            category: 'skincare',
+            badge: 'Novo',
+            image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80'
           },
           {
             id: 3,
-            title: "Kit Trio Spray Aromaterapia",
-            sub: "Calma, Energia e Foco (3x 120ml)",
-            price: 205.20,
-            oldPrice: 228.00,
-            badge: "10% OFF",
-            category: "aromaterapia",
-            image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80"
+            title: 'Sabonete Artesanal de Argila Verde & Alecrim',
+            sub: 'Detox facial e corporal • 110g',
+            price: 24.90,
+            category: 'corpo',
+            image: 'https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80'
           },
           {
             id: 4,
-            title: "Sabonete Facial Natural",
-            sub: "Carvão Ativado, Melaleuca e Menta (60g)",
-            price: 45.90,
-            category: "skincare",
-            image: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80"
+            title: 'Óleo Essencial Terapêutico de Gerânio',
+            sub: 'Aromaterapia para equilíbrio emocional • 10ml',
+            price: 49.90,
+            category: 'aromaterapia',
+            image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80'
           },
           {
             id: 5,
-            title: "Kit Detox das Axilas Especial",
-            sub: "Com Máscara de Argila + Desodorante + Mini Ecobag",
-            price: 157.70,
-            oldPrice: 160.70,
-            badge: "Kit Especial",
-            category: "kits",
-            image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80"
-          },
-          {
-            id: 6,
-            title: "Óleo Calmante Íntimo Feel Lub",
-            sub: "Alívio e Hidratação com Óleos Botânicos (30ml)",
-            price: 98.00,
-            category: "intimo",
-            image: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80"
-          },
-          {
-            id: 7,
-            title: "Máscara Natural de Argila Verde",
-            sub: "Argila Verde, Menta e Melaleuca (30 ml)",
-            price: 53.90,
-            category: "skincare",
-            image: "https://images.unsplash.com/photo-1567928269569-b36214240751?auto=format&fit=crop&w=600&q=80"
-          },
-          {
-            id: 8,
-            title: "Kit Mini Trio Desodorante",
-            sub: "Com Mini Ecobag Farmaura",
-            price: 65.90,
-            category: "kits",
-            image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&q=80"
+            title: 'Kit Ritual Farmaura (Sabonete + Desodorante + Sérum)',
+            sub: 'Combo completo de autocuidado natural',
+            price: 118.00,
+            oldPrice: 128.70,
+            category: 'kits',
+            badge: 'Oferta Especial',
+            image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
           }
         ],
+        cart: [],
 
         filteredProducts() {
           if (this.activeCategory === 'todos') return this.products;
@@ -808,39 +754,32 @@
         },
 
         addToCart(product) {
-          const existing = this.cart.find(item => item.id === product.id);
-          if (existing) {
-            existing.qty++;
+          const index = this.cart.findIndex(i => i.id === product.id);
+          if (index > -1) {
+            this.cart[index].qty++;
           } else {
             this.cart.push({ ...product, qty: 1 });
           }
           this.showToast(`"${product.title}" adicionado ao carrinho!`);
-          this.cartOpen = true;
-        },
-
-        updateQty(index, change) {
-          this.cart[index].qty += change;
-          if (this.cart[index].qty <= 0) {
-            this.cart.splice(index, 1);
-          }
         },
 
         removeFromCart(index) {
           this.cart.splice(index, 1);
         },
 
+        updateQty(index, change) {
+          this.cart[index].qty += change;
+          if (this.cart[index].qty <= 0) {
+            this.removeFromCart(index);
+          }
+        },
+
         cartTotalCount() {
-          return this.cart.reduce((acc, item) => acc + item.qty, 0);
+          return this.cart.reduce((sum, item) => sum + item.qty, 0);
         },
 
         cartSubtotal() {
-          return this.cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-        },
-
-        cartTotalWithDiscounts() {
-          let total = this.cartSubtotal();
-          if (this.discountApplied) total *= 0.90;
-          return total;
+          return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
         },
 
         freeShippingRemaining() {
@@ -850,10 +789,16 @@
         applyCoupon() {
           if (this.couponCode.trim().toUpperCase() === 'FARMAURA10') {
             this.discountApplied = true;
-            this.showToast("Cupom FARMAURA10 aplicado com sucesso (10% OFF)!");
+            this.showToast('Cupom FARMAURA10 aplicado com sucesso!');
           } else {
-            this.showToast("Cupom inválido. Tente FARMAURA10.");
+            alert('Cupom inválido! Utilize FARMAURA10 para 10% OFF.');
           }
+        },
+
+        cartTotalWithDiscounts() {
+          let total = this.cartSubtotal();
+          if (this.discountApplied) total *= 0.9;
+          return total;
         },
 
         openCheckoutModal() {
@@ -861,65 +806,64 @@
           this.checkoutModalOpen = true;
         },
 
-        // 🚀 ENVIO AUTOMÁTICO DO PEDIDO PARA Farmaurainc@gmail.com VIA FORMSUBMIT
-        async submitOrder() {
-          this.isSubmitting = true;
-
-          const itemsFormatted = this.cart.map(i => `${i.qty}x ${i.title} (${this.formatMoney(i.price * i.qty)})`).join('\n');
-          const totalFinal = this.customer.paymentMethod === 'PIX' ? this.cartTotalWithDiscounts() * 0.97 : this.cartTotalWithDiscounts();
-
-          const payload = {
-            _subject: `📦 NOVO PEDIDO - Farmaura - ${this.customer.name}`,
-            _template: 'table',
-            "Nome do Cliente": this.customer.name,
-            "E-mail": this.customer.email,
-            "Telefone/WhatsApp": this.customer.phone,
-            "CPF": this.customer.cpf || 'Não informado',
-            "Endereço": `${this.customer.street}, Nº ${this.customer.number} (${this.customer.complement || 'S/Comp'}) - ${this.customer.neighborhood}`,
-            "Cidade/UF": `${this.customer.city} / ${this.customer.state}`,
-            "CEP": this.customer.cep,
-            "Forma de Pagamento": this.customer.paymentMethod,
-            "Itens Comprados": itemsFormatted,
-            "Cupom Aplicado": this.discountApplied ? 'FARMAURA10 (10% OFF)' : 'Nenhum',
-            "Total Final": this.formatMoney(totalFinal)
-          };
-
-          try {
-            await fetch("https://formsubmit.co/ajax/Farmaurainc@gmail.com", {
-              method: "POST",
-              headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              body: JSON.stringify(payload)
-            });
-
-            this.isSubmitting = false;
-            this.checkoutModalOpen = false;
-            this.orderSuccessModalOpen = true;
-          } catch (error) {
-            console.error("Erro ao enviar pedido:", error);
-            // Fallback em caso de bloqueio pontual do serviço
-            this.isSubmitting = false;
-            this.checkoutModalOpen = false;
-            this.orderSuccessModalOpen = true;
-          }
-        },
-
-        finishProcess() {
-          this.cart = [];
-          this.orderSuccessModalOpen = false;
-          this.showToast("Obrigado por comprar na Farmaura!");
-        },
-
-        formatMoney(value) {
-          return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
-        },
-
         showToast(msg) {
           this.toast.message = msg;
           this.toast.show = true;
-          setTimeout(() => { this.toast.show = false; }, 3500);
+          setTimeout(() => { this.toast.show = false; }, 4000);
+        },
+
+        formatMoney(val) {
+          return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+        },
+
+        async submitOrder() {
+          if (this.cart.length === 0) {
+            alert('Seu carrinho está vazio!');
+            return;
+          }
+
+          this.isSubmitting = true;
+
+          const itemsSummary = this.cart.map(i => `${i.qty}x ${i.title} (${this.formatMoney(i.price * i.qty)})`).join('\n');
+          const finalTotal = this.customer.payment === 'pix' ? this.cartTotalWithDiscounts() * 0.97 : this.cartTotalWithDiscounts();
+
+          const formData = {
+            Cliente_Nome: this.customer.name,
+            Cliente_Email: this.customer.email,
+            Cliente_Telefone: this.customer.phone,
+            Cliente_CPF: this.customer.cpf || 'Não informado',
+            Endereco_Entrega: `${this.customer.street}, ${this.customer.number} - ${this.customer.complement || ''}, Bairro: ${this.customer.neighborhood}, Cidade: ${this.customer.city}/${this.customer.state} - CEP: ${this.customer.cep}`,
+            Forma_Pagamento: this.customer.payment.toUpperCase(),
+            Itens_Pedido: itemsSummary,
+            Subtotal: this.formatMoney(this.cartSubtotal()),
+            Cupom_Aplicado: this.discountApplied ? 'FARMAURA10 (10% OFF)' : 'Nenhum',
+            Total_Final: this.formatMoney(finalTotal)
+          };
+
+          try {
+            const response = await fetch('https://formspree.io/f/xaeqegev', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+              this.checkoutModalOpen = false;
+              this.cart = [];
+              this.discountApplied = false;
+              alert('🎉 Pedido realizado com sucesso! Enviamos a confirmação para o seu e-mail.');
+            } else {
+              alert('Houve um problema ao enviar seu pedido. Por favor, tente novamente.');
+            }
+          } catch (error) {
+            console.error('Erro no checkout:', error);
+            alert('Erro de conexão ao processar o pedido.');
+          } finally {
+            this.isSubmitting = false;
+          }
         }
       }
     }
