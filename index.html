@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -95,7 +96,7 @@
 
         <div class="hidden md:flex flex-1 max-w-md mx-8">
           <div class="relative w-full">
-            <input type="text" placeholder="Buscar sabonete em pó, produtos..." 
+            <input type="text" placeholder="Buscar sabonete em pó..." 
                    class="w-full bg-sand-100 border border-sand-300 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-botanic-500 transition" />
             <button class="absolute right-3 top-2.5 text-botanic-500">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -137,7 +138,7 @@
         <span class="bg-botanic-700/80 text-sand-100 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-botanic-500/30">100% Vegano & Artesanal</span>
         <h1 class="font-serif text-4xl md:text-6xl leading-tight">Inovação natural para a sua rotina.</h1>
         <p class="text-sand-200 text-sm md:text-base max-w-lg font-light leading-relaxed">
-          Conheça a nossa linha de cuidados corporais sustentáveis e artesanais. Fórmulas puras pensadas para o seu dia a dia.
+          Conheça o Wayfarer: Sabonete corporal em pó com extrato de Chá Verde. Disponível na versão em sachês individuais e no refil econômico de 100g.
         </p>
         <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
           <a href="#produtos" class="w-full sm:w-auto bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-sm text-center">
@@ -150,11 +151,11 @@
       </div>
       <div class="md:w-5/12 mt-12 md:mt-0">
         <div class="relative bg-sand-100/10 backdrop-blur-md p-4 rounded-2xl border border-sand-100/20 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1608248597261-7582e09424e8?auto=format&fit=crop&w=800&q=80" alt="Cosméticos Naturais Farmaura" class="rounded-xl object-cover h-80 w-full">
+          <img src="https://images.unsplash.com/photo-1608248597261-7582e09424e8?auto=format&fit=crop&w=800&q=80" alt="Wayfarer Sabonete Corporal em Pó" class="rounded-xl object-cover h-80 w-full">
           <div class="absolute -bottom-4 -left-4 bg-sand-50 text-botanic-900 p-4 rounded-xl shadow-lg border border-sand-200 text-xs max-w-xs">
             <p class="font-bold text-sm">Wayfarer - Sabonete Corporal em Pó</p>
-            <p class="text-gray-500 mt-0.5">Chá Verde • 5 sachês de 10g (50g total)</p>
-            <span class="text-terracotta-500 font-bold mt-1 block">R$ 67,42</span>
+            <p class="text-gray-500 mt-0.5">Chá Verde • Opções em Sachês ou Refill 100g</p>
+            <span class="text-terracotta-500 font-bold mt-1 block">A partir de R$ 67,42</span>
           </div>
         </div>
       </div>
@@ -189,12 +190,12 @@
   <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-sand-200 pb-4">
       <div>
-        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Catálogo de Produtos</span>
-        <h2 class="font-serif text-3xl md:text-4xl text-botanic-900 mt-1">Conheça nossos produtos artesanais</h2>
+        <span class="text-terracotta-500 font-bold text-xs uppercase tracking-widest">Linha Wayfarer</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-botanic-900 mt-1">Sabonete Corporal em Pó</h2>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center max-w-4xl mx-auto">
       <template x-for="product in filteredProducts()" :key="product.id">
         <div class="group bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           
@@ -252,7 +253,7 @@
           A Farmaura nasceu do desejo de reconectar a rotina diária de cuidados com os ritmos da natureza. Acreditamos que você não precisa comprometer sua saúde ou o meio ambiente para ter resultados incríveis.
         </p>
         <p class="text-gray-600 text-sm leading-relaxed mb-6">
-          Nossas fórmulas são artesanais e ecológicas, ricas em extratos botânicos e pensadas para proporcionar a máxima eficiência com o menor impacto ambiental.
+          Nossas fórmulas em pó são artesanais, livres de água na composição e embaladas de forma ecológica para reduzir a pegada de carbono no transporte e o uso de plásticos.
         </p>
         <div class="grid grid-cols-2 gap-4 pt-2">
           <div class="border-l-2 border-terracotta-500 pl-4">
@@ -267,7 +268,7 @@
       </div>
       <div class="grid grid-cols-2 gap-4">
         <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover" alt="Ingredientes Naturais">
-        <img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Sabonete Natural">
+        <img src="https://images.unsplash.com/photo-1608248597261-7582e09424e8?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" alt="Wayfarer Sabonete em Pó">
       </div>
     </div>
   </section>
@@ -611,7 +612,7 @@
         products: [
           {
             id: 1,
-            title: 'Wayfarer - Sabonete Corporal em Pó',
+            title: 'Wayfarer - Sabonete Corporal em Pó (Sachês)',
             sub: 'Extrato de Chá Verde • 5 sachês de 10g (50g no total)',
             price: 67.42,
             category: 'corpo',
@@ -620,20 +621,11 @@
           },
           {
             id: 2,
-            title: 'Sabonete Facial Botânico',
-            sub: 'Com Extrato de Camomila & Calêndula • 100g',
-            price: 45.00,
+            title: 'Wayfarer - Sabonete Corporal em Pó (Refill 100g)',
+            sub: 'Extrato de Chá Verde • Embalagem Ecológica de Refil 100g',
+            price: 98.00,
             category: 'corpo',
-            badge: 'Mais Vendido',
-            image: 'https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            id: 3,
-            title: 'Óleo Corporal Nutritivo',
-            sub: 'Óleos Vegetais Puros & Óleos Essenciais • 100ml',
-            price: 89.90,
-            category: 'corpo',
-            badge: 'Especial',
+            badge: 'Econômico',
             image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
           }
         ],
