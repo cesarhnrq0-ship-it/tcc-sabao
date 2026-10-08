@@ -1,3 +1,7 @@
+Adicionei o novo item Wayfarer - Sabonete Corporal em Pó (Caixa com 10 Sachês - 100g total) ao catálogo e ajustei o layout da vitrine para exibir os 3 produtos lado a lado!
+
+Aqui está o código HTML completo e atualizado:
+
 HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -138,7 +142,7 @@ HTML
         <span class="bg-botanic-700/80 text-sand-100 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-botanic-500/30">100% Vegano & Artesanal</span>
         <h1 class="font-serif text-4xl md:text-6xl leading-tight">Inovação natural para a sua rotina.</h1>
         <p class="text-sand-200 text-sm md:text-base max-w-lg font-light leading-relaxed">
-          Conheça o Wayfarer: Sabonete corporal em pó com extrato de Chá Verde. Disponível na versão em sachês individuais e no refil econômico de 100g.
+          Conheça o Wayfarer: Sabonete corporal em pó com extrato de Chá Verde. Disponível em sachês individuais e no refil econômico de 100g.
         </p>
         <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
           <a href="#produtos" class="w-full sm:w-auto bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-sm text-center">
@@ -195,7 +199,7 @@ HTML
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center max-w-6xl mx-auto">
       <template x-for="product in filteredProducts()" :key="product.id">
         <div class="group bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           
@@ -612,7 +616,7 @@ HTML
         products: [
           {
             id: 1,
-            title: 'Wayfarer - Sabonete Corporal em Pó (Sachês)',
+            title: 'Wayfarer - Sabonete Corporal em Pó (5 Sachês)',
             sub: 'Extrato de Chá Verde • 5 sachês de 10g (50g no total)',
             price: 67.42,
             category: 'corpo',
@@ -621,6 +625,15 @@ HTML
           },
           {
             id: 2,
+            title: 'Wayfarer - Sabonete Corporal em Pó (Caixa 10 Sachês)',
+            sub: 'Extrato de Chá Verde • Caixa com 10 sachês de 10g (100g no total)',
+            price: 119.90,
+            category: 'corpo',
+            badge: 'Mais Vendido',
+            image: 'https://images.unsplash.com/photo-1608248597261-7582e09424e8?auto=format&fit=crop&w=600&q=80'
+          },
+          {
+            id: 3,
             title: 'Wayfarer - Sabonete Corporal em Pó (Refill 100g)',
             sub: 'Extrato de Chá Verde • Embalagem Ecológica de Refil 100g',
             price: 98.00,
